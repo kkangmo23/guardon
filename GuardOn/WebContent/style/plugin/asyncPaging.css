@@ -1,0 +1,37 @@
+﻿.clearfix:after {visibility: hidden;display: block;font-size: 0;content: " ";clear: both;height: 0;}
+        * html .clearfix             { zoom: 1; } /* IE6 */
+        *:first-child+html .clearfix { zoom: 1; } /* IE7 */
+        
+.pageSet {font-family:Verdana; font-size:12px;text-decoration:none;margin-bottom:5px;}
+
+.pageSet a {
+    text-decoration:none;padding:5px;display:block;float:left;margin-right:5px;
+    /*webkit*/
+    -webkit-border-radius: 3px;
+    -webkit-transition-property:border,background-color,-webkit-box-shadow,color;
+    -webkit-transition-duration: 0.2s;
+    -webkit-transition-timing-function: ease-in;
+    /*FF*/
+    -moz-border-radius: 3px; 
+    -moz-transition-property:border,background-color,-webkit-box-shadow,color;
+    -moz-transition-duration: 0.2s;
+    -moz-transition-timing-function: ease-in;}
+
+    .pageSet a:hover {-webkit-box-shadow: 0.5px 0.5px 2px #999;-moz-box-shadow: 0.5px 0.5px 2px #999;}
+    .pageSet a span {padding:5px;}
+
+
+.page{background-color:#f3f3f3;color:#555575;border:1px solid #d9d9d9;}
+.page:hover{border:1px solid #c0c0c0;background-color:#f7f7f7;color:#33335e;}
+.page_selected{background-color:#d9d9d9;color:#555575;border:1px solid #d9d9d9;-webkit-box-shadow: 0.5px 0.5px 2px #999;-moz-box-shadow: 0.5px 0.5px 2px #999;}
+
+#align {  
+width:100%;  
+text-align:center;  
+}   
+ 
+#paging {  
+margin:0 auto; /*위에서 센터로 놨음에도 또 이걸 해 주는 건 IE외의 다른 브라우저에선 이게 없으면 다시 왼쪽으로 붙기 때문이에요*/ 
+width:750px; /*이건 임의값입니다. 쓰실 데로 수정하세요*/ 
+text-align:left;  
+}

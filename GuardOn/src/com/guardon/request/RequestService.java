@@ -1,0 +1,34 @@
+package com.guardon.request;
+
+import java.util.ArrayList;
+import java.util.Map;
+
+import com.guardon.request.domain.History;
+import com.guardon.request.domain.Request;
+
+public interface RequestService {
+	
+	public void insertRequest(Request request) throws Exception;
+	public String getOtpApproved(Map<String, String> map) throws Exception;
+	public int countOtpApproved(Map<String, String> map) throws Exception;
+	public ArrayList<Request> getApprovedList(int page) throws Exception;
+	public void updateApproved(Map<String, String> map) throws Exception;
+	public void updateRejected(Map<String, String> map) throws Exception;
+	public ArrayList<Request> getPeriodPwd(Map<String, String> map) throws Exception;
+	public ArrayList<Request> getApprovedReq() throws Exception;
+	public void updatePassword(Map<String, String> map) throws Exception;
+	public String getEndDate(Map<String, String> map) throws Exception;
+	public void updateDestructed(Map<String, String> map) throws Exception;
+	public void updateExpiration(Map<String, String> map) throws Exception;
+	public String checkDuplReq(Map<String, String> map) throws Exception;
+	public ArrayList<Request> getExpirePeriodPwdTarget(String today) throws Exception;
+	public void expirePeriodPwd(String today) throws Exception;
+	public void expireOtpPwd() throws Exception;
+	public void expireOtpPwdByTime(String time) throws Exception;
+	public ArrayList<History> getExpiredUserHistory(String userId) throws Exception;
+	public ArrayList<History> getUncheckedUserHistory(String userId) throws Exception;
+	public ArrayList<History> getApprovedUserHistory(String userId) throws Exception;
+	public int countExpiredUserHistory(String userId) throws Exception;
+	public int countUncheckedUserHistory(String userId) throws Exception;
+	public int countApprovedUserHistory(String userId) throws Exception;
+}

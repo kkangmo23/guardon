@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "http://ibatis.apache.org/dtd/sql-map-2.dtd" 
+						"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="History">
+	<typeAlias alias="history" type="com.guardon.request.domain.History" />
+
+	<resultMap class="history" id="resulthistory">
+		<result property="serverName" column="serverName" />
+		<result property="requestDesc" column="requestDesc" />
+		<result property="requestDate" column="requestDate" />
+		<result property="approvalDate" column="approvalDate" />
+		<result property="approvalId" column="approvalId" />
+		<result property="approved" column="approved" />
+		<result property="connectId" column="connectId" />
+		<result property="userId" column="userId" />
+		<result property="pwdType" column="pwdType" />
+		<result property="startDate" column="startDate" />
+		<result property="endDate" column="endDate" />
+		<result property="password" column="password" />
+		<result property="userName" column="userName" />
+		<result property="userLevel" column="userLevel" />
+	</resultMap>
+	
+	<select id="getUncheckedUserHistory" parameterClass="string"
+	resultClass="history">
+	SELECT *
+		FROM tbl_request
+		WHERE  userId=#userId# AND approved='unchecked'
+</select>
+
+	<select id="getExpiredUserHistory" parameterClass="string"
+		resultClass="history">
+		SELECT r.serverName, r.requestDesc, r.requestDate, r.approvalDate,
+		r.approvalId, r.approved, r.connectId, r.userId, r.pwdType,
+		r.startDate, r.endDate, r.password, u.userName,u.userLevel
+		FROM
+		tbl_request r, tbl_user u
+		WHERE r.approvalId = u.userid AND
+		r.userId=#userId# AND r.approved='expired'
+	</select>
+
+	<select id="getApprovedUserHistory" parameterClass="string"
+		resultClass="history">
+		SELECT r.serverName, r.requestDesc, r.requestDate, r.approvalDate,
+		r.approvalId, r.approved, r.connectId, r.userId, r.pwdType,
+		r.startDate, r.endDate, r.password, u.userName,u.userLevel
+		FROM
+		tbl_request r, tbl_user u
+		WHERE r.approvalId = u.userid AND
+		r.userId=#userId# AND r.approved='approved'
+	</select>
+
+	<select id="countApprovedUserHistory" parameterClass="string"
+		resultClass="int">
+		SELECT COUNT(r.userId)
+		FROM tbl_request r, tbl_user u
+		WHERE r.approvalId = u.userid AND r.userId=#userId# AND
+		r.approved='approved'
+	</select>
+
+	<select id="countUncheckedUserHistory" parameterClass="string"
+		resultClass="int">
+		SELECT COUNT(r.userId)
+		FROM tbl_request r, tbl_user u
+		WHERE r.approvalId = u.userid AND r.userId=#userId# AND
+		r.approved='unchecked'
+	</select>
+
+	<select id="countExpiredUserHistory" parameterClass="string"
+		resultClass="int">
+		SELECT COUNT(r.userId)
+		FROM tbl_request r, tbl_user u
+		WHERE r.userId=#userId# AND r.approvalId = u.userid AND
+		r.approved='expired'
+	</select>
+
+</sqlMap>
