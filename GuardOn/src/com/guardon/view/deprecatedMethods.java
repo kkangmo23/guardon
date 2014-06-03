@@ -1,5 +1,7 @@
 package com.guardon.view;
 
+/*
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -399,3 +401,4 @@ public class deprecatedMethods {
 				return "";
 		}
 }
+*/

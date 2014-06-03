@@ -112,7 +112,7 @@ public class UserController {
 	@RequestMapping("findId.do")
 	public String findId(HttpServletRequest request) throws Exception {
 
-		return "findId";
+		return "/Common/findId";
 	}
 
 	@RequestMapping("getId.do")
@@ -135,22 +135,22 @@ public class UserController {
 				userId = userService.getId(map);
 				System.out.println("aaaaaaaaaaa : " + userId);
 				request.setAttribute("userId", userId);
-				return "getId";
+				return "/Common/getId";
 			} else {
 				request.setAttribute("message", "해당 아이디가 존재하지 않습니다.");
-				return "interPage";
+				return "/Common/interPage";
 			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
 			request.setAttribute("message", "요청을 처리할 수 없습니다.");
-			return "interPage";
+			return "/Common/interPage";
 		}
 	}
 
 	@RequestMapping("findPwd.do")
 	public String findPwd(HttpServletRequest request) throws Exception {
-		return "findPwd";
+		return "/Common/findPwd";
 	}
 
 	@RequestMapping("getPwd.do")
@@ -169,17 +169,17 @@ public class UserController {
 			if (userService.countPwd(map) == 1) {
 				userPwd = userService.getPwd(map);
 				request.setAttribute("userPwd", userPwd);
-				return "getPwd";
+				return "/Common/getPwd";
 			} else {
 				request.setAttribute("message",
 						"요청 실패! userId 또는 Email을 확인 하십시오.");
-				return "interPage";
+				return "/Common/interPage";
 			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
 			request.setAttribute("message", "요청을 처리할 수 없습니다.");
-			return "interPage";
+			return "/Common/interPage";
 		}
 	}
 
@@ -193,26 +193,26 @@ public class UserController {
 
 			switch (userType) {
 			case "admin":
-				return "adminHome";
+				return "/Admin/adminHome";
 
 			case "user":
-				return "nomalUserHome";
+				return "/User/nomalUserHome";
 
 			case "outUser":
-				return "outUserHome";
+				return "/Out/outUserHome";
 			case "super":
-				return "superHome";
+				return "/Admin/superHome";
 
 			default:
 				break;
 			}
 		}
-		return "userLogin";
+		return "/Common/userLogin";
 	}
 
 	@RequestMapping("/userJoin.do")
 	public String userJoin(HttpServletRequest request) throws Exception {
-		return "joinUser";
+		return "/Common/joinUser";
 	}
 
 	@RequestMapping("/insertUser.do")
@@ -249,21 +249,21 @@ public class UserController {
 			if (userType.equals("admin")) {
 				userService.insertJoinRequest(user);
 				request.setAttribute("message", "회원 가입 요청이 완료되었습니다.");
-				return "interPage";
+				return "/Common/interPage";
 			} else {
 				userService.insertUser(user);
 				request.setAttribute("message", "회원 가입이 완료되었습니다.");
-				return "interPage";
+				return "/Common/interPage";
 			}
 		} catch (NestedSQLException e) {
 			e.printStackTrace();
 			request.setAttribute("errorMessage", "해당 아이디는 사용하실 수 없습니다.");
-			return "errorPage";
+			return "/Common/errorPage";
 
 		} catch (Exception e) {
 			e.printStackTrace();
 			request.setAttribute("errorMessage", "요청을 처리할 수 없습니다.");
-			return "errorPage";
+			return "/Common/errorPage";
 
 		}
 	}
@@ -273,13 +273,13 @@ public class UserController {
 			throws Exception {
 		if (session.getAttribute("userId") == null) {
 			request.setAttribute("errorMessage", "세션이 만료되었습니다.");
-			return "errorPage";
+			return "/Common/errorPage";
 		}
 
 		String userId = (String) session.getAttribute("userId");
 		if (!(userService.getUserType(userId).equals("super"))) {
 			request.setAttribute("errorMessage", "최고 관리자만 접근할 수 있습니다.");
-			return "errorPage";
+			return "/Common/errorPage";
 		}
 
 		ArrayList<User> joinUserList = new ArrayList<User>();
@@ -298,7 +298,7 @@ public class UserController {
 		request.setAttribute("joinUserList", joinUserList);
 		request.setAttribute("page", Integer.parseInt(pageParam));
 
-		return "joinUserList";
+		return "/Admin/joinUserList";
 	}
 
 	@RequestMapping("/approvalJoinReq.do")
@@ -306,7 +306,7 @@ public class UserController {
 			HttpSession session) throws Exception {
 		if (session.getAttribute("userId") == null) {
 			request.setAttribute("errorMessage", "세션이 만료되었습니다.");
-			return "errorPage";
+			return "/Common/errorPage";
 		}
 
 		String[] userId;
@@ -320,7 +320,7 @@ public class UserController {
 
 		request.setAttribute("message", "총 " + userId.length
 				+ "건의 요청을 수락하였습니다.");
-		return "adminInterPage";
+		return "/Admin/adminInterPage";
 	}
 
 	@RequestMapping("/rejectJoinReq.do")
@@ -328,7 +328,7 @@ public class UserController {
 			throws Exception {
 		if (session.getAttribute("userId") == null) {
 			request.setAttribute("errorMessage", "세션이 만료되었습니다.");
-			return "errorPage";
+			return "/Common/errorPage";
 		}
 		String[] userId;
 
@@ -341,7 +341,7 @@ public class UserController {
 
 		request.setAttribute("message", "총 " + userId.length
 				+ "건의 요청을 반려하였습니다.");
-		return "adminInterPage";
+		return "/Admin/adminInterPage";
 	}
 
 	@RequestMapping("/updateUser.do")
@@ -349,7 +349,7 @@ public class UserController {
 			throws Exception {
 		if (session.getAttribute("userId") == null) {
 			request.setAttribute("errorMessage", "세션이 만료되었습니다.");
-			return "errorPage";
+			return "/Common/errorPage";
 		}
 		String userId, userType;
 		User user = new User();
@@ -374,16 +374,16 @@ public class UserController {
 		// request.setAttribute("userCp3", userCp3);
 
 		if (userType.equals("admin"))
-			return "updateAdmin";
+			return "/Admin/updateAdmin";
 		else if (userType.equals("user"))
-			return "updateUser";
+			return "/User/updateUser";
 		else if (userType.equals("outUser"))
-			return "updateOutUser";
+			return "/Out/updateOutUser";
 		else if (userType.equals("super"))
-			return "updateAdmin";
+			return "/Admin/updateAdmin";
 		else {
 			request.setAttribute("errorMessage", "요청을 처리할 수 없습니다.");
-			return "errorPage";
+			return "/Common/errorPage";
 		}
 	}
 
@@ -392,7 +392,7 @@ public class UserController {
 			throws Exception {
 		if (session.getAttribute("userId") == null) {
 			request.setAttribute("errorMessage", "세션이 만료되었습니다.");
-			return "errorPage";
+			return "/Common/errorPage";
 		}
 
 		String userId, userName, userPwd, userDepartment, userLevel, companyNumber, userEmail, phoneNumber;
@@ -422,10 +422,10 @@ public class UserController {
 
 		if (userType.equals("admin") || userType.equals("super")) {
 			request.setAttribute("message", "개인 정보가 수정되었습니다.");
-			return "adminInterPage";
+			return "/Admin/adminInterPage";
 		} else {
 			request.setAttribute("message", "개인 정보가 수정되었습니다.");
-			return "interPage";
+			return "/Common/interPage";
 		}
 
 	}
@@ -448,7 +448,7 @@ public class UserController {
 			user = userService.getUserBasicInfo(userId);
 
 			if (userPwd == null || userId == null)
-				return "errorLogin";
+				return "/Common/errorLogin";
 
 			/*
 			 * if (userService.isActive(userId)) return "errorLogin";
@@ -472,7 +472,7 @@ public class UserController {
 
 					session.setAttribute("userId", userId);
 					session.setMaxInactiveInterval(-1);
-					return "superHome";
+					return "/Admin/superHome";
 				} else {
 					System.out.println("failure");
 				}
@@ -495,9 +495,9 @@ public class UserController {
 
 						session.setAttribute("userId", userId);
 						session.setMaxInactiveInterval(-1);
-						return "adminHome";
+						return "/Admin/adminHome";
 					} else if (user.getJoinApproved().equals("unchecked")) {
-						return "errorLogin";
+						return "/Common/errorLogin";
 					}
 
 				} else {
@@ -515,10 +515,10 @@ public class UserController {
 						session.setAttribute("userId", userId);
 						session.setMaxInactiveInterval(-1);
 
-						return "nomalUserHome";
+						return "/User/nomalUserHome";
 					}
 				} else if (user.getJoinApproved().equals("unchecked")) {
-					return "errorLogin";
+					return "/Common/errorLogin";
 				} else {
 					System.out.println("failure");
 				}
@@ -532,7 +532,7 @@ public class UserController {
 
 					session.setAttribute("userId", userId);
 					session.setMaxInactiveInterval(-1);
-					return "outUserHome";
+					return "/Out/outUserHome";
 				} else {
 					System.out.println("failure");
 				}
@@ -541,12 +541,12 @@ public class UserController {
 		} catch (NullPointerException e) {
 			loginFailed = "failure";
 			request.setAttribute("failure", loginFailed);
-			return "errorLogin";
+			return "/Common/errorLogin";
 		} catch (Exception e) {
 			e.printStackTrace();
-			return "errorLogin";
+			return "/Common/errorLogin";
 		}
-		return "errorLogin";
+		return "/Common/errorLogin";
 	}
 
 	@RequestMapping("/userLogout.do")
@@ -563,7 +563,7 @@ public class UserController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "logoutSuccess";
+		return "/Common/logoutSuccess";
 
 	}
 

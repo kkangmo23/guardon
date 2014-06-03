@@ -24,7 +24,7 @@ public class password {
 		 otp = UUID.randomUUID().toString().replace("-", "").substring(0,15);		 
 		 char[] array = otp.toCharArray();
 		 array[randomRange(1, otp.length()-1)] = (char)randomRange(33, 47);
-		 otp="";6v
+		 otp="";
 		 for (int i = 0; i < array.length; i++) {
 			otp+=array[i];
 		}

@@ -103,7 +103,7 @@ public class WorkflowController {
 		System.out.println("ssssssssssssss : " + workflowName);
 		System.out.println("ssssssssssssss : " + workflowDesc);
 		request.setAttribute("message", "워크플로우가 성공적으로 등록되었습니다.");
-		return "adminInterPage";
+		return "/Admin/adminInterPage";
 	}
 
 	@RequestMapping("workflow.do")
@@ -112,10 +112,10 @@ public class WorkflowController {
 		int page = 1;
 		request.setAttribute("serverList", serverService.getWfServerList(page));
 
-		return "workflowServerSelect";
+		return "/Admin/workflowServerSelect";
 	}
 
-	@RequestMapping("createWorkflow.do")
+	@RequestMapping("/createWorkFlow.do")
 	public String createWorkFlow(HttpServletRequest request) throws Exception {
 
 		String serverName[] = request.getParameterValues("temp");
@@ -127,7 +127,7 @@ public class WorkflowController {
 		int page = 1;
 		request.setAttribute("userList", userService.getWfUserList(page));
 
-		return "workflow";
+		return "/Admin/workflow";
 	}
 
 }

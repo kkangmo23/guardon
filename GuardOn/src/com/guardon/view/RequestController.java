@@ -427,7 +427,7 @@ public class RequestController {
 
 		if (session.getAttribute("userId") == null) {
 			request.setAttribute("errorMessage", "세션이 만료되었습니다.");
-			return "errorPage";
+			return "/Common/errorPage";
 		}
 
 		String userId;
@@ -452,7 +452,7 @@ public class RequestController {
 		 * System.out.println(uncheckedHistories.get(i).getUserLevel()); }
 		 */
 
-		return "outUserHistory";
+		return "/Out/outUserHistory";
 	}
 
 	@RequestMapping("outSendRequest.do")
@@ -460,7 +460,7 @@ public class RequestController {
 			throws Exception {
 		if (session.getAttribute("userId") == null) {
 			request.setAttribute("errorMessage", "세션이 만료되었습니다.");
-			return "errorPage";
+			return "/Common/errorPage";
 		}
 		Request rq = new Request();
 		Map<String, String> map = new HashMap<>();
@@ -482,7 +482,7 @@ public class RequestController {
 			System.out.println("접속아이디 체크 : "
 					+ connectIdService.countConnectId(map));
 			request.setAttribute("errorMessage", "서버에 해당 접속아이디가 존재하지 않습니다.");
-			return "errorPage";
+			return "/Common/errorPage";
 		}
 		if (requestService.countOtpApproved(map) > 0) {
 			approvedTemp = requestService.getOtpApproved(map);
@@ -503,7 +503,7 @@ public class RequestController {
 					|| connectId.equals("Administrator")
 					|| connectId.equals(serverService.getServerId(serverName))) {
 				request.setAttribute("errorMessage", "해당 아이디는 사용이 불가능합니다.");
-				return "errorPage";
+				return "/Common/errorPage";
 			}
 
 			/*
@@ -516,15 +516,15 @@ public class RequestController {
 			if (approvedTemp.equals("unchecked")) {
 				request.setAttribute("errorMessage",
 						"이미 진행중인 요청이 있습니다. 관리자가 처리할 때까지 기다려주십시오.");
-				return "errorPage";
+				return "/Common/errorPage";
 			} else if (approvedTemp.equals("approved")) {
 				request.setAttribute("errorMessage", "이미 승인 된 요청입니다.");
-				return "errorPage";
+				return "/Common/errorPage";
 			}
 
 			if (!checkConnectId(serverName, connectId)) {
 				request.setAttribute("errorMessage", "서버에 해당 아이디가 존재하지 않습니다.");
-				return "errorPage";
+				return "/Common/errorPage";
 			}
 
 			DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -543,10 +543,10 @@ public class RequestController {
 		} catch (Exception e) {
 			e.printStackTrace();
 			request.setAttribute("errorMessage", "요청을 처리할 수 없습니다.");
-			return "errorPage";
+			return "/Common/errorPage";
 		}
 
-		return "outUserOtpRequestDone";
+		return "/Out/outUserOtpRequestDone";
 	}
 
 	@RequestMapping("outPeriodPwdList.do")
@@ -554,7 +554,7 @@ public class RequestController {
 			HttpSession session) throws Exception {
 		if (session.getAttribute("userId") == null) {
 			request.setAttribute("errorMessage", "세션이 만료되었습니다.");
-			return "errorPage";
+			return "/Common/errorPage";
 		}
 		String userId = session.getAttribute("userId").toString();
 
@@ -569,7 +569,7 @@ public class RequestController {
 		periodPwdList = requestService.getPeriodPwd(map);
 
 		request.setAttribute("periodPwdList", periodPwdList);
-		return "outPeriodPwdList";
+		return "/Out/outPeriodPwdList";
 	}
 
 	@RequestMapping("periodPwdList.do")
@@ -577,7 +577,7 @@ public class RequestController {
 			throws Exception {
 		if (session.getAttribute("userId") == null) {
 			request.setAttribute("errorMessage", "세션이 만료되었습니다.");
-			return "errorPage";
+			return "/Common/errorPage";
 		}
 		String userId = session.getAttribute("userId").toString();
 
@@ -592,7 +592,7 @@ public class RequestController {
 		periodPwdList = requestService.getPeriodPwd(map);
 
 		request.setAttribute("periodPwdList", periodPwdList);
-		return "periodPwdList";
+		return "/User/periodPwdList";
 	}
 
 	@RequestMapping("outPeriodPwdApproval.do")
@@ -600,7 +600,7 @@ public class RequestController {
 			HttpSession session) {
 		if (session.getAttribute("userId") == null) {
 			request.setAttribute("errorMessage", "세션이 만료되었습니다.");
-			return "errorPage";
+			return "/Common/errorPage";
 		}
 		Request rq = new Request();
 		Map<String, String> map = new HashMap<>();
@@ -625,16 +625,16 @@ public class RequestController {
 					|| connectId.equals("Administrator")
 					|| connectId.equals(serverService.getServerId(serverName))) {
 				request.setAttribute("errorMessage", "해당 아이디는 사용이 불가능합니다.");
-				return "errorPage";
+				return "/Common/errorPage";
 			}
 			if (!requestService.checkDuplReq(map).equals("0")) {
 				request.setAttribute("errorMessage",
 						"해당 서버와 아이디에 대해 이미 발급 된 비밀번호가 있거나 처리중인 요청이 있습니다.");
-				return "errorPage";
+				return "/Common/errorPage";
 			}
 			if (!checkConnectId(serverName, connectId)) {
 				request.setAttribute("errorMessage", "서버에 해당 아이디가 존재하지 않습니다.");
-				return "errorPage";
+				return "/Common/errorPage";
 			}
 
 			if (serverService.getWorkflowName(serverName).equals("none"))
@@ -655,10 +655,10 @@ public class RequestController {
 			requestService.insertRequest(rq);
 		} catch (Exception e) {
 			request.setAttribute("errorMessage", "요청을 처리할 수 없습니다.");
-			return "errorPage";
+			return "/Common/errorPage";
 		}
 
-		return "outUserOtpRequestDone";
+		return "/Out/outUserOtpRequestDone";
 	}
 
 	@RequestMapping("periodPwdApproval.do")
@@ -666,7 +666,7 @@ public class RequestController {
 			HttpSession session) {
 		if (session.getAttribute("userId") == null) {
 			request.setAttribute("errorMessage", "세션이 만료되었습니다.");
-			return "errorPage";
+			return "/Common/errorPage";
 		}
 		Request rq = new Request();
 		Map<String, String> map = new HashMap<>();
@@ -691,16 +691,16 @@ public class RequestController {
 					|| connectId.equals("Administrator")
 					|| connectId.equals(serverService.getServerId(serverName))) {
 				request.setAttribute("errorMessage", "해당 아이디는 사용이 불가능합니다.");
-				return "errorPage";
+				return "/Common/errorPage";
 			}
 			if (!requestService.checkDuplReq(map).equals("0")) {
 				request.setAttribute("errorMessage",
 						"해당 서버와 아이디에 대해 이미 발급 된 비밀번호가 있거나 처리중인 요청이 있습니다.");
-				return "errorPage";
+				return "/Common/errorPage";
 			}
 			if (!checkConnectId(serverName, connectId)) {
 				request.setAttribute("errorMessage", "서버에 해당 아이디가 존재하지 않습니다.");
-				return "errorPage";
+				return "/Common/errorPage";
 			}
 
 			if (serverService.getWorkflowName(serverName).equals("none"))
@@ -721,9 +721,9 @@ public class RequestController {
 			requestService.insertRequest(rq);
 		} catch (Exception e) {
 			request.setAttribute("errorMessage", "요청을 처리할 수 없습니다.");
-			return "errorPage";
+			return "/Common/errorPage";
 		}
-		return "userOtpRequestDone";
+		return "/User/userOtpRequestDone";
 	}
 
 	@RequestMapping("outPeriodPwdServerSelect.do")
@@ -731,7 +731,7 @@ public class RequestController {
 			HttpSession session) throws Exception {
 		if (session.getAttribute("userId") == null) {
 			request.setAttribute("errorMessage", "세션이 만료되었습니다.");
-			return "errorPage";
+			return "/Common/errorPage";
 		}
 
 		String pageParam = request.getParameter("page");
@@ -746,7 +746,7 @@ public class RequestController {
 		request.setAttribute("serverList", serverList);
 		request.setAttribute("page", Integer.parseInt(pageParam));
 
-		return "outPeriodPwdServerSelect";
+		return "/Out/outPeriodPwdServerSelect";
 	}
 
 	@RequestMapping("periodPwdServerSelect.do")
@@ -754,7 +754,7 @@ public class RequestController {
 			HttpSession session) throws Exception {
 		if (session.getAttribute("userId") == null) {
 			request.setAttribute("errorMessage", "세션이 만료되었습니다.");
-			return "errorPage";
+			return "/Common/errorPage";
 		}
 
 		String pageParam = request.getParameter("page");
@@ -770,7 +770,7 @@ public class RequestController {
 		request.setAttribute("page", Integer.parseInt(pageParam));
 		request.setAttribute("message", "1234asd");
 
-		return "periodPwdServerSelect";
+		return "/User/periodPwdServerSelect";
 	}
 
 	@RequestMapping("changeAllList.do")
@@ -778,7 +778,7 @@ public class RequestController {
 			throws Exception {
 		if (session.getAttribute("userId") == null) {
 			request.setAttribute("errorMessage", "세션이 만료되었습니다.");
-			return "errorPage";
+			return "/Common/errorPage";
 		}
 		ArrayList<ConnectId> changeAllList = new ArrayList<ConnectId>();
 		changeAllList = connectIdService.getConnectIdList();
@@ -786,14 +786,14 @@ public class RequestController {
 		request.setCharacterEncoding("utf-8");
 		request.setAttribute("changeAllList", changeAllList);
 
-		return "changeAllList";
+		return "/Admin/changeAllList";
 	}
 
 	@RequestMapping("changeAllPwd.do")
 	public String changeAllPwd(HttpServletRequest request, HttpSession session) {
 		if (session.getAttribute("userId") == null) {
 			request.setAttribute("errorMessage", "세션이 만료되었습니다.");
-			return "errorPage";
+			return "/Common/errorPage";
 		}
 
 		String temp[] = request.getParameterValues("temp");
@@ -835,7 +835,7 @@ public class RequestController {
 		request.setAttribute("totalCount", totalCount);
 		request.setAttribute("successCount", successCount);
 
-		return "changeAllPwdResult";
+		return "/Admin/changeAllPwdResult";
 
 	}
 
@@ -843,7 +843,7 @@ public class RequestController {
 	public String makeOtp(HttpServletRequest request, HttpSession session) {
 		if (session.getAttribute("userId") == null) {
 			request.setAttribute("errorMessage", "세션이 만료되었습니다.");
-			return "errorPage";
+			return "/Common/errorPage";
 		}
 
 		User user = new User();
@@ -962,7 +962,7 @@ public class RequestController {
 						System.out.println("there is no such Id");
 						request.setAttribute("errorMessage",
 								"서버에 해당 아이디가 존재하지 않습니다.");
-						return "errorPage";
+						return "/Common/errorPage";
 					} else {
 						stmt.executeUpdate(query);
 					}
@@ -974,9 +974,9 @@ public class RequestController {
 					con.close();
 
 					if (userType.equals("user"))
-						return "userOtp";
+						return "/User/userOtp";
 					else if (userType.equals("outUser"))
-						return "outUserOtp";
+						return "/Out/outUserOtp";
 
 				case "mssql":
 
@@ -1004,7 +1004,7 @@ public class RequestController {
 						System.out.println("there is no such Id");
 						request.setAttribute("errorMessage",
 								"서버에 해당 아이디가 존재하지 않습니다.");
-						return "errorPage";
+						return "/Common/errorPage";
 					} else {
 						stmt.executeUpdate(query);
 					}
@@ -1025,9 +1025,9 @@ public class RequestController {
 					con.close();
 
 					if (userType.equals("user"))
-						return "userOtp";
+						return "/User/userOtp";
 					else if (userType.equals("outUser"))
-						return "outUserOtp";
+						return "/Out/outUserOtp";
 
 				case "mysql":
 
@@ -1050,7 +1050,7 @@ public class RequestController {
 						System.out.println("there is no such Id");
 						request.setAttribute("errorMessage",
 								"서버에 해당 아이디가 존재하지 않습니다.");
-						return "errorPage";
+						return "/Common/errorPage";
 					}
 
 					else {
@@ -1076,9 +1076,9 @@ public class RequestController {
 					con.close();
 
 					if (userType.equals("user"))
-						return "userOtp";
+						return "/User/userOtp";
 					else if (userType.equals("outUser"))
-						return "outUserOtp";
+						return "/Out/outUserOtp";
 
 				case "telnet":
 					serverOS = serverService.getServerOS(serverName);
@@ -1107,9 +1107,9 @@ public class RequestController {
 						System.out.println(userOtp);
 
 						if (userType.equals("user"))
-							return "userOtp";
+							return "/User/userOtp";
 						else if (userType.equals("outUser"))
-							return "outUserOtp";
+							return "/Out/outUserOtp";
 					}
 
 				default:
@@ -1117,19 +1117,19 @@ public class RequestController {
 				}
 			} else {
 				if (userType.equals("user"))
-					return "errorUserAuthority";
+					return "/User/errorUserAuthority";
 				if (userType.equals("outUser"))
-					return "errorOutAuthority";
+					return "/Out/errorOutAuthority";
 			}
 
 		} catch (NullPointerException e) {
 			e.printStackTrace();
 			request.setAttribute("errorMessage", "OTP를 발급받을 수 없습니다.");
-			return "errorPage";
+			return "/Common/errorPage";
 		} catch (Exception e) {
 			e.printStackTrace();
 			request.setAttribute("errorMessage", "서버에 접속할 수 없습니다.");
-			return "errorPage";
+			return "/Common/errorPage";
 		} finally {
 			if (rs != null)
 				try {
@@ -1157,7 +1157,7 @@ public class RequestController {
 				}
 		}
 		request.setAttribute("errorMessage", "OTP발급에 실패하였습니다.");
-		return "errorPage";
+		return "/Common/errorPage";
 	}
 
 	@RequestMapping(method = RequestMethod.GET, value = "/updateRejected.do")
@@ -1165,7 +1165,7 @@ public class RequestController {
 			throws Exception {
 		if (session.getAttribute("userId") == null) {
 			request.setAttribute("errorMessage", "세션이 만료되었습니다.");
-			return "errorPage";
+			return "/Common/errorPage";
 		}
 
 		Map<String, String> map = new HashMap<>();
@@ -1198,7 +1198,7 @@ public class RequestController {
 		request.setAttribute("approvalCount", approvalCount);
 		request.setAttribute("approvalSuccessCount", approvalSuccessCount);
 
-		return "approvalResult";
+		return "/Admin/approvalResult";
 	}
 
 	@RequestMapping(method = RequestMethod.GET, value = "/updateApproved.do")
@@ -1206,7 +1206,7 @@ public class RequestController {
 			throws Exception {
 		if (session.getAttribute("userId") == null) {
 			request.setAttribute("errorMessage", "세션이 만료되었습니다.");
-			return "errorPage";
+			return "/Common/errorPage";
 		}
 		int approvalSuccessCount = 0;
 		int approvalCount = 0;
@@ -1348,7 +1348,7 @@ public class RequestController {
 
 		// request.setAttribute("failRequest", failRequest);
 
-		return "approvalResult";
+		return "/Admin/approvalResult";
 	}
 
 	@RequestMapping("/outUserOtpPretreatment.do")
@@ -1356,7 +1356,7 @@ public class RequestController {
 			HttpSession session) throws Exception {
 		if (session.getAttribute("userId") == null) {
 			request.setAttribute("errorMessage", "세션이 만료되었습니다.");
-			return "errorPage";
+			return "/Common/errorPage";
 		}
 
 		String pageParam = request.getParameter("page");
@@ -1372,7 +1372,7 @@ public class RequestController {
 		request.setAttribute("serverList", serverList);
 		request.setAttribute("page", Integer.parseInt(pageParam));
 
-		return "outUserOtpPretreatment";
+		return "/Out/outUserOtpPretreatment";
 	}
 
 	@RequestMapping("/userOtpPretreatment.do")
@@ -1380,7 +1380,7 @@ public class RequestController {
 			HttpSession session) throws Exception {
 		if (session.getAttribute("userId") == null) {
 			request.setAttribute("errorMessage", "세션이 만료되었습니다.");
-			return "errorPage";
+			return "/Common/errorPage";
 		}
 
 		String pageParam = request.getParameter("page");
@@ -1396,7 +1396,7 @@ public class RequestController {
 		request.setAttribute("serverList", serverList);
 		request.setAttribute("page", Integer.parseInt(pageParam));
 
-		return "userOtpPretreatment";
+		return "/User/userOtpPretreatment";
 	}
 
 	@RequestMapping("/approvalUserList.do")
@@ -1404,7 +1404,7 @@ public class RequestController {
 			HttpSession session) throws Exception {
 		if (session.getAttribute("userId") == null) {
 			request.setAttribute("errorMessage", "세션이 만료되었습니다.");
-			return "errorPage";
+			return "/Common/errorPage";
 		}
 
 		ArrayList<Request> requestList = new ArrayList<Request>();
@@ -1416,7 +1416,7 @@ public class RequestController {
 		}
 		requestList = requestService.getApprovedList(page);
 		request.setAttribute("requestList", requestList);
-		return "approvalUserList";
+		return "/Admin/approvalUserList";
 	}
 
 	@RequestMapping("outUserOtpRequest.do")
@@ -1424,7 +1424,7 @@ public class RequestController {
 			HttpSession session) throws Exception {
 		if (session.getAttribute("userId") == null) {
 			request.setAttribute("errorMessage", "세션이 만료되었습니다.");
-			return "errorPage";
+			return "/Common/errorPage";
 		}
 
 		String pageParam = request.getParameter("page");
@@ -1439,7 +1439,7 @@ public class RequestController {
 		request.setAttribute("serverList", serverList);
 		request.setAttribute("page", Integer.parseInt(pageParam));
 
-		return "outUserOtpRequest";
+		return "/Out/outUserOtpRequest";
 	}
 
 }

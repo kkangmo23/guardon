@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "http://ibatis.apache.org/dtd/sql-map-2.dtd" 
+						"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+						
+<sqlMap namespace="Workflow">
+	<typeAlias alias="workflow" type="com.guardon.workflow.domain.Workflow"/>
+	
+	<resultMap class="workflow" id="resultWorkflow">
+		<result property="workflowName" column="workflowName" />
+		<result property="workflowDesc" column="workflowDesc" />
+		<result property="workflowStep" column="workflowStep" />
+		<result property="userId" column="userId" />
+		<result property="updateDate" column="updateDate" />
+		<result property="involveServerCount" column="involveServerCount" />
+				
+	</resultMap>	
+	
+	<insert id="insertWorkflow" parameterClass="workflow">
+		INSERT INTO 
+		tbl_workflow(workflowName, userId, workflowDesc, workflowStep, updateDate, involveServerCount) 
+		VALUES(
+			#workflowName#,
+			#userId#,
+			#workflowDesc#, 
+			#workflowStep#,
+			#updateDate#,
+			#involveServerCount#
+			)
+	</insert>
+	
+	<select id="getWorkflowList" parameterClass="string" resultClass="workflow">
+		SELECT workflowName, workflowDesc, workflowStep, involveServerCount, updateDate
+		FROM tbl_workflow
+		WHERE userId=#value#	
+	</select>
+	
+</sqlMap>

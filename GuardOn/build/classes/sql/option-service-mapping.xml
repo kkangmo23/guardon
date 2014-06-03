@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "http://ibatis.apache.org/dtd/sql-map-2.dtd" 
+						"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+						
+<sqlMap namespace="Option">
+	<typeAlias alias="option" type="com.guardon.option.domain.Option"/>
+	
+	<resultMap class="option" id="resultOption">
+		
+		<result property="pwdLength" column="pwdLength" />
+		<result property="autoLogout" column="autoLogout" />
+		<result property="otpTimeLimit" column="otpTimeLimit" />
+		<result property="loginFailedCount" column="loginFailedCount" />
+		<result property="pwdComplexity" column="pwdComplexity" />
+		<result property="approvedTimeLimit" column="approvedTimeLimit" />		
+	</resultMap>
+	
+	
+	<update id="updateOption" parameterClass="option">
+		UPDATE tbl_option
+		SET pwdLength = #pwdLength#,
+		otpTimeLimit = #otpTimeLimit#,
+		loginFailedCount = #loginFailedCount#,
+		pwdComplexity = #pwdComplexity#,
+		approvedTimeLimit = #approvedTimeLimit#
+	</update>
+	
+	<select id="getPwdLength" resultClass="int">
+		SELECT IFNULL(pwdLength, 10)
+		FROM tbl_option
+	</select>
+	
+	<select id="getAutoLogout" resultClass="int">
+		SELECT IFNULL(autoLogout, 0)
+		FROM tbl_option
+	</select>
+	
+	<select id="getOtpTimeLimit" resultClass="int">
+		SELECT IFNULL(otpTimeLimit, 30)
+		FROM tbl_option
+	</select>
+	
+	<select id="getLoginFailedCount" resultClass="int">
+		SELECT IFNULL(loginFailedCount, 2)
+		FROM tbl_option
+	</select>
+	
+	<select id="getPwdComplexity" resultClass="string">
+		SELECT IFNULL(pwdComplexity, 'Low')
+		FROM tbl_option
+	</select>
+	
+	<select id="getApprovedTimeLimit" resultClass="int">
+		SELECT IFNULL(approvedTimeLimit, 30)
+		FROM tbl_option
+	</select>
+
+</sqlMap>

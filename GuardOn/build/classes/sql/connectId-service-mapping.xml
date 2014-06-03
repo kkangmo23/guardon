@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "http://ibatis.apache.org/dtd/sql-map-2.dtd" 
+						"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="ConnectId">
+	<typeAlias alias="connectId" type="com.guardon.connectId.domain.ConnectId" />
+
+	<resultMap class="connectId" id="resultconnectId">
+		<result property="connectId" column="connectId" />
+		<result property="serverName" column="serverName" />
+		<result property="connectIdDesc" column="connectIdDesc" />
+		<result property="ipAddress" column="ipAddress" />
+	</resultMap>
+	
+	<select id="getConnectIdList"  resultClass="connectId">
+		SELECT c.*, s.ipAddress 
+		FROM tbl_connectId as c, tbl_server as s
+		WHERE c.serverName = s.serverName
+	</select>
+	
+	<select id="countConnectId" parameterClass="map" resultClass="int">
+		SELECT COUNT(connectId) 
+		FROM tbl_connectId
+		WHERE connectId=#connectId# AND serverName=#serverName#
+	</select>
+	
+	<insert id="insertConnectId" parameterClass="connectId">
+	
+		INSERT INTO
+		tbl_connectId(connectId, serverName, connectIdDesc)
+		VALUES(
+			#connectId#,
+			#serverName#,
+			#connectIdDesc#
+		)
+	</insert>
+	
+	<update id="updateConnectId" parameterClass="map">
+		
+		UPDATE tbl_connectId 
+		SET connectId=#connectId#,
+			 serverName=#serverName#,
+			 connectIdDesc=#connectIdDesc#
+		WHERE connectId = #connectId# AND serverName=#serverName# AND connectIdDesc=#connectIdDesc#
+		
+	</update>
+	
+	<delete id="deleteConnectId" parameterClass="map">
+		DELETE
+		FROM tbl_connectId
+		WHERE connectId=#connectId# AND serverName=#serverName#
+	</delete>
+
+</sqlMap>

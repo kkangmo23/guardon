@@ -25,7 +25,7 @@ public class OptionController {
 	public String option(HttpServletRequest request, HttpSession session) {
 		if (session.getAttribute("userId") == null) {
 			request.setAttribute("errorMessage", "세션이 만료되었습니다.");
-			return "errorPage";
+			return "/Common/errorPage";
 		}
 
 		String loginFailedCount = null, otpTimeLimit = null, pwdLength = null, pwdComplexity = null, autoLogout = null, approvedTimeLimit = null;
@@ -43,7 +43,7 @@ public class OptionController {
 		} catch (Exception e) {
 			e.printStackTrace();
 			request.setAttribute("errorMessage", "설정 정보를 불러오는데 실패했습니다.");
-			return "errorPage";
+			return "/Common/errorPage";
 		}
 		// request.setAttribute("autoLogout", autoLogout);
 		request.setAttribute("loginFailedCount", loginFailedCount);
@@ -52,7 +52,7 @@ public class OptionController {
 		request.setAttribute("pwdComplexity", pwdComplexity);
 		request.setAttribute("approvedTimeLimit", approvedTimeLimit);
 
-		return "option";
+		return "/Admin/option";
 
 	}
 
@@ -60,7 +60,7 @@ public class OptionController {
 	public String updateOption(HttpServletRequest request, HttpSession session) {
 		if (session.getAttribute("userId") == null) {
 			request.setAttribute("errorMessage", "세션이 만료되었습니다.");
-			return "errorPage";
+			return "/Common/errorPage";
 		}
 		String pwdComplexity;
 		int pwdLength, otpTimeLimit, loginFailedCount, approvedTimeLimit;
@@ -87,10 +87,10 @@ public class OptionController {
 		} catch (Exception e) {
 			e.printStackTrace();
 			request.setAttribute("message", "설정 수정에 실패하였습니다.");
-			return "adminInterPage";
+			return "/Admin/adminInterPage";
 		}
 		request.setAttribute("message", "성공적으로 설정을 수정하였습니다.");
-		return "adminInterPage";
+		return "/Admin/adminInterPage";
 	}
 
 }

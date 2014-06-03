@@ -41,25 +41,25 @@ public class ServerController {
 		request.setAttribute("serverList", serverList);
 		request.setAttribute("page", Integer.parseInt(pageParam));
 
-		return "dbList";
+		return "/Server/dbList";
 	}
 
 	@RequestMapping("/serverHome.do")
 	public String serverHome(HttpServletRequest request) throws Exception {
 
-		return "serverHome";
+		return "/Server/serverHome";
 	}
 
 	@RequestMapping("/dbInstall.do")
 	public String dbInstall(HttpServletRequest request) throws Exception {
 
-		return "dbInstall";
+		return "/Server/dbInstall";
 	}
 
 	@RequestMapping("/serverInstall.do")
 	public String serverInstall(HttpServletRequest request) throws Exception {
 
-		return "serverInstall";
+		return "/Server/serverInstall";
 	}
 
 	@RequestMapping("/updateServerSelect.do")
@@ -76,13 +76,13 @@ public class ServerController {
 			serverCount = serverService.getServerListCount();
 		} catch (Exception e) {
 			request.setAttribute("message", "서버 정보를 불러오는데 실패하였습니다.");
-			return "serverServicePage";
+			return "/Server/serverServicePage";
 		}
 		request.setAttribute("serverListCnt", serverCount);
 		request.setAttribute("serverList", serverList);
 		request.setAttribute("page", Integer.parseInt(pageParam));
 
-		return "updateServerSelect";
+		return "/Server/updateServerSelect";
 	}
 
 	@RequestMapping("/updateServerPretreatment.do")
@@ -105,7 +105,7 @@ public class ServerController {
 			request.setAttribute("dbName", server.getDbName());
 			request.setAttribute("connectType", server.getConnectType());
 			request.setAttribute("connectIdDupl", server.isConnectIdDupl());
-			return "updateDB";
+			return "/Server/updateDB";
 		} else if (server.getServerType().equals("server")) {
 			request.setAttribute("serverName", serverName);
 			request.setAttribute("ipAddress", server.getIpAddress());
@@ -116,10 +116,10 @@ public class ServerController {
 			request.setAttribute("serverOS", server.getServerOS());
 			request.setAttribute("connectType", server.getConnectType());
 			request.setAttribute("connectIdDupl", server.isConnectIdDupl());
-			return "updateServer";
+			return "/Server/updateServer";
 		}
 		request.setAttribute("message", "서버 정보를 불러오는데 실패하였습니다.");
-		return "serverServicePage";
+		return "/Server/serverServicePage";
 
 	}
 
@@ -145,11 +145,11 @@ public class ServerController {
 			serverService.updateDB(server);
 		} catch (Exception e) {
 			request.setAttribute("message", "서버 정보 수정에 실패하였습니다.");
-			return "serverServicePage";
+			return "/Server/serverServicePage";
 		}
 
 		request.setAttribute("message", "성공적으로 서버 정보를 수정하였습니다.");
-		return "serverServicePage";
+		return "/Server/serverServicePage";
 	}
 
 	@RequestMapping("/updateServer")
@@ -174,11 +174,11 @@ public class ServerController {
 			serverService.updateDB(server);
 		} catch (Exception e) {
 			request.setAttribute("message", "서버 정보 수정에 실패하였습니다.");
-			return "serverServicePage";
+			return "/Server/serverServicePage";
 		}
 
 		request.setAttribute("message", "성공적으로 서버 정보를 수정하였습니다.");
-		return "serverServicePage";
+		return "/Server/serverServicePage";
 	}
 
 	@RequestMapping("/deleteServerSelect.do")
@@ -195,13 +195,13 @@ public class ServerController {
 			serverCount = serverService.getServerListCount();
 		} catch (Exception e) {
 			request.setAttribute("message", "서버 정보를 불러오는데 실패하였습니다.");
-			return "serverServicePage";
+			return "/Server/serverServicePage";
 		}
 		request.setAttribute("serverListCnt", serverCount);
 		request.setAttribute("serverList", serverList);
 		request.setAttribute("page", Integer.parseInt(pageParam));
 
-		return "deleteServerSelect";
+		return "/Server/deleteServerSelect";
 	}
 
 	@RequestMapping("/deleteServer.do")
@@ -216,7 +216,7 @@ public class ServerController {
 			}
 		}
 		request.setAttribute("message", "성공적으로 서버를 삭제하였습니다.");
-		return "serverServicePage";
+		return "/Server/serverServicePage";
 	}
 
 	@ResponseBody
@@ -271,7 +271,7 @@ public class ServerController {
 		serverService.insertServer(server);
 
 		request.setAttribute("message", "성공적으로 서버를 등록하였습니다.");
-		return "serverServicePage";
+		return "/Server/serverServicePage";
 
 	}
 
@@ -319,7 +319,7 @@ public class ServerController {
 		 */
 
 		request.setAttribute("message", "성공적으로 서버를 등록하였습니다.");
-		return "serverServicePage";
+		return "/Server/serverServicePage";
 	}
 
 }

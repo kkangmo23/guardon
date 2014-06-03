@@ -49,7 +49,7 @@ public class ConnectIdController {
 		}
 
 		request.setAttribute("message", "성공적으로 접속아이디를 삭제하였습니다.");
-		return "serverServicePage";
+		return "/Server/serverServicePage";
 	}
 
 	@RequestMapping("connectIdList.do")
@@ -59,7 +59,7 @@ public class ConnectIdController {
 
 		request.setAttribute("connectIdList", connectIdList);
 
-		return "deleteConnectId";
+		return "/Server/deleteConnectId";
 	}
 
 	@RequestMapping("connectIdSelect.do")
@@ -73,7 +73,7 @@ public class ConnectIdController {
 				.parseInt(pageParam));
 		request.setAttribute("serverList", serverList);
 
-		return "insertConnectId";
+		return "/Server/insertConnectId";
 	}
 
 	@RequestMapping("/insertConnectId.do")
@@ -95,11 +95,11 @@ public class ConnectIdController {
 
 		if (connectIdService.countConnectId(map) > 0) {
 			request.setAttribute("message", "해당 서버에 중복된 접속 아이디가 있습니다.");
-			return "serverServicePage";
+			return "/Server/serverServicePage";
 		} else {
 			connectIdService.insertConnectId(conn);
 			request.setAttribute("message", "성공적으로 접속 아이디를 등록하였습니다.");
-			return "serverServicePage";
+			return "/Server/serverServicePage";
 		}
 	}
 

@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "http://ibatis.apache.org/dtd/sql-map-2.dtd" 
+						"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+						
+<sqlMap namespace="Server">
+	<typeAlias alias="server" type="com.guardon.server.domain.Server"/>
+	
+	<resultMap class="server" id="resultServer">
+		<result property="serverId" column="serverId" />
+		<result property="serverPwd" column="serverPwd" />
+		<result property="serverName" column="serverName" />
+		<result property="serverDesc" column="serverDesc" />
+		<result property="connectType" column="connectType" />
+		<result property="ipAddress" column="ipAddress" />
+		<result property="serverOS" column="serverOS" />
+		<result property="dbName" column="dbName" />	
+		<result property="workflowName" column="workflowName" />
+		<result property="port" column="port" />
+		<result property="serverLock" column="serverLock" />	
+		<result property="connectIdDupl" column="connectIdDupl" />	
+		<result property="serverType" column="serverType" />	
+		
+	</resultMap>
+	
+	<update id="updateDB" parameterClass="server">
+		UPDATE tbl_server 
+		SET serverId=#serverId#, serverPwd=#serverPwd#, serverDesc=#serverDesc#, connectType=#connectType#, ipAddress=#ipAddress#, dbName=#dbName#, port=#port#, connectIdDupl=#connectIdDupl#
+		WHERE serverName = #serverName#
+		
+	</update>
+	
+	<update id="updateServer" parameterClass="server">
+		UPDATE tbl_server 
+		SET serverId=#serverId#, serverPwd=#serverPwd#, serverDesc=#serverDesc#, connectType=#connectType#, ipAddress=#ipAddress#, serverOS=#serverOS#, port=#port#, connectIdDupl=#connectIdDupl#
+		WHERE serverName = #serverName#
+		
+	</update>
+	
+	<select id="getServerInfo" parameterClass="string" resultClass="server">
+		SELECT serverId, serverPwd, serverName, serverDesc, connectType, ipAddress, serverOs, dbName, workflowName, port, connectIdDupl, serverType
+		FROM tbl_server
+		WHERE serverName = #value#
+	</select>
+	
+	<select id="getServerListCount" resultClass="int">
+		SELECT COUNT(*) FROM tbl_server 
+	</select>
+	
+	<select id="getConnectType" parameterClass="string" resultClass="string">
+		SELECT connectType 
+		FROM tbl_server
+		WHERE serverName = #value#
+	</select>
+	
+	<select id="getServerOS" parameterClass="string" resultClass="string">
+		SELECT serverOS
+		FROM tbl_server
+		WHERE serverName = #value#
+	</select>
+	
+	<select id="getWorkflowName" parameterClass="string" resultClass="string">
+		SELECT IFNULL(workflowName, 'none')
+		FROM tbl_server
+		WHERE serverName = #value#
+	</select>
+	
+	<select id="getServerIpAddress" parameterClass="string" resultClass="string">
+		SELECT ipAddress
+		FROM tbl_server
+		WHERE serverName = #value#
+	</select>
+	
+	<select id="getPort" parameterClass="string" resultClass="string">
+		SELECT port
+		FROM tbl_server
+		WHERE serverName = #value#
+	</select>
+
+	<select id="getServerList" parameterClass="int" resultClass="server">
+		SELECT serverName, ipAddress, serverDesc
+		FROM tbl_server LIMIT #value#, 15
+	</select>
+	
+	<select id="getWfServerList" parameterClass="int" resultClass="server">
+		SELECT serverName, ipAddress, serverDesc
+		FROM tbl_server
+		WHERE workflowName IS NULL
+		LIMIT #value#, 15
+	</select>
+	
+	<select id="getPeriodServerList" parameterClass="int" resultClass="server">
+		SELECT serverName, ipAddress, serverDesc
+		FROM tbl_server
+		WHERE connectIdDupl = FALSE
+		LIMIT #value#, 15
+	</select>
+	
+	<select id="getServerUrl" parameterClass="string" resultClass="string">
+		SELECT serverUrl 
+		FROM tbl_server
+		WHERE serverName = #value#
+	</select>
+	
+	<select id="getServerPwd" parameterClass="string" resultClass="string">
+		SELECT serverPwd 
+		FROM tbl_server
+		WHERE serverName = #value#
+	</select>
+	
+	<select id="getServerId" parameterClass="string" resultClass="string">
+		SELECT serverId 
+		FROM tbl_server
+		WHERE serverName = #value#
+	</select>
+	
+	<insert id="insertServer" parameterClass="server">
+		INSERT INTO 
+		tbl_server(serverName,ipAddress,serverDesc,serverId,serverPwd,connectType,serverOS,port,connectIdDupl,serverType) 
+		VALUES(
+			#serverName#,
+			#ipAddress#,
+			#serverDesc#, 
+			#serverId#,
+			#serverPwd#,
+			#connectType#,
+			#serverOS#,
+			#port#,
+			#connectIdDupl#,
+			'server')
+	</insert>
+	
+	<insert id="insertDBServer" parameterClass="server">
+		INSERT INTO 
+		tbl_server(serverName,ipAddress,serverDesc,serverId,serverPwd,connectType,port,dbName,connectIdDupl,serverType) 
+		VALUES(
+			#serverName#,
+			#ipAddress#,
+			#serverDesc#, 
+			#serverId#,
+			#serverPwd#,
+			#connectType#,
+			#port#,
+			#dbName#,
+			#connectIdDupl#,
+			'db')
+	</insert>
+	
+	<update id="setWorkflowName" parameterClass="map">
+		UPDATE tbl_server 
+		SET workflowName = #workflowName#
+		WHERE serverName = #serverName#
+		
+	</update>	
+	
+	<select id="getConnectIdDupl" parameterClass="string" resultClass="boolean">
+		SELECT connectIdDupl 
+		FROM tbl_server
+		WHERE serverName = #value#
+	</select>
+	
+	<delete id="deleteServer" parameterClass="string">
+		DELETE FROM tbl_server
+		WHERE serverName = #value#
+	</delete>
+	
+	<select id="countServerName" parameterClass="string" resultClass="int">
+		SELECT COUNT(serverName) 
+		FROM tbl_server
+		WHERE serverName = #value#
+	</select>
+
+	
+</sqlMap>
