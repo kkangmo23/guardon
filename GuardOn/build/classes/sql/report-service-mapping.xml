@@ -77,4 +77,10 @@
 		ORDER BY tbl_log.loginTime ASC		
 	</select>
 	
+	<select id="getApprovalInfoAll" parameterClass="string" resultClass="approvalInfo">
+		SELECT tbl_user.userId, tbl_user.userName, tbl_user.userDepartment, tbl_user.userLevel, tbl_user.userType, tbl_user.companyNumber, tbl_request.requestDate, tbl_request.approvalDate, tbl_request.pwdType, tbl_request.approvalId, tbl_request.serverName, tbl_request.requestDesc, tbl_request.approved, tbl_request.connectId
+		FROM tbl_user INNER JOIN tbl_request
+		ON tbl_user.userId = tbl_request.userId		
+	</select>
+	
 </sqlMap>

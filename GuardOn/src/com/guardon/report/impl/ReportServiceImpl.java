@@ -27,6 +27,10 @@ public class ReportServiceImpl implements ReportService{
 	public ArrayList<ApprovalInfo> getApprovalInfo(String yesterday) throws Exception{
 		return reportDAO.getApprovalInfo(yesterday);
 	}
+	@Override
+	public ArrayList<ApprovalInfo> getApprovalInfoAll() throws Exception{
+		return reportDAO.getApprovalInfoAll();
+	}
 	
 	/*
 	@Override

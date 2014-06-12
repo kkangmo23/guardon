@@ -27,6 +27,10 @@ public class ReportDAOImpl implements ReportDAO{
 	public ArrayList<ApprovalInfo> getApprovalInfo(String yesterday) throws Exception {
 		return (ArrayList<ApprovalInfo>)sqlMapClient.queryForList("Report.getApprovalInfo", yesterday);
 	}
+	@Override
+	public ArrayList<ApprovalInfo> getApprovalInfoAll() throws Exception {
+		return (ArrayList<ApprovalInfo>)sqlMapClient.queryForList("Report.getApprovalInfoAll");
+	}
 	/*
 	@Override
 	public ArrayList<RejectInfo> getRejectInfo() throws Exception {

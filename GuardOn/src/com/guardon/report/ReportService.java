@@ -9,6 +9,7 @@ import com.guardon.report.domain.RejectInfo;
 public interface ReportService {
 	public ArrayList<LogInfo> getLogInfo(String today) throws Exception;
 	public ArrayList<ApprovalInfo> getApprovalInfo(String yesterday) throws Exception;
+	public ArrayList<ApprovalInfo> getApprovalInfoAll() throws Exception;
 	//public ArrayList<RejectInfo> getRejectInfo() throws Exception;
 
 }
