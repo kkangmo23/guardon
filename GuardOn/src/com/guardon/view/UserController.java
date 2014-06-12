@@ -430,7 +430,7 @@ public class UserController {
 
 	}
 
-	@RequestMapping(method = RequestMethod.POST, value = "/userLogin.do")
+	@RequestMapping("/userLogin.do")
 	public String userLogin(HttpServletRequest request, HttpSession session)
 			throws Exception {
 		String userPwd, userId, userType;
