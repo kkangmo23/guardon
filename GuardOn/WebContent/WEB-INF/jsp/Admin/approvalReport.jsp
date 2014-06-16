@@ -6,89 +6,62 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>무제 문서</title>
-<link rel="stylesheet" href="<%=cp%>/style/basic.css" type="text/css" media="print, projection, screen" />
-<link rel="stylesheet" href="<%=cp%>/js/__jquery.tablesorter/themes/blue/style.css" type="text/css" media="print, projection, screen" />
 
-<script type="text/javascript" src="<%=cp%>/js/plugin/jquery-2.1.0.min.js"></script>
-<script type="text/javascript" src="<%=cp%>/js/plugin/asyncPaging.js"></script>
-
-<script type="text/javascript" src="<%=cp%>/js/__jquery.tablesorter/jquery-latest.js"></script>
-<script type="text/javascript" src="<%=cp%>/js/__jquery.tablesorter/jquery.tablesorter.js"></script>
-<script type="text/javascript" src="<%=cp%>/js/__jquery.tablesorter/jquery.tablesorter.min.js"></script>
-<script type="text/javascript" src="<%=cp%>/js/__jquery.tablesorter/jquery.metadata.js"></script>
-<script type="text/javascript" src="<%=cp%>/js/__jquery.tablesorter/addons/pager/jquery.tablesorter.pager.js"></script>
-
-<link rel="stylesheet" href="<%=cp%>/js/jquery/1.10.4/jquery-ui.css" />
-
-<script src="<%=cp%>/js/jquery/1.10.4/jquery.js"></script>
-<script src="<%=cp%>/js/jquery/1.10.4/jquery-ui.js"></script>
-
-<script language="javascript">
-$(function() {
-  var dates = $( "#from, #to " ).datepicker({
-  prevText: '이전 달',
-  nextText: '다음 달',
-  monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-  monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-  dayNames: ['일','월','화','수','목','금','토'],
-  dayNamesShort: ['일','월','화','수','목','금','토'],
-  dayNamesMin: ['일','월','화','수','목','금','토'],
-  dateFormat: 'yy-mm-dd',
-  showMonthAfterYear: true,
-  yearSuffix: '년',
-  //minDate: '0',
-  onSelect: function( selectedDate ) {
-    var option = this.id == "from" ? "minDate" : "maxDate",
-      instance = $( this ).data( "datepicker" ),
-      date = $.datepicker.parseDate(
-        instance.settings.dateFormat ||
-        $.datepicker._defaults.dateFormat,
-        selectedDate, instance.settings );
-    dates.not( this ).datepicker( "option", option, date );
-  }
-  });
-});
-</script>
 <title>Insert title here</title>
 </head>
 <body>
-<div class="container">
-  <div class="header"><strong>
-    <!-- end .header -->
-  Guard-ON</strong>관리자</div>
-    <div class="header"></div>
-  <div class="sidebar1">
-    <ul class="nav">
-    <li><a href="index.do">Home</a></li>
-    <li><a href="joinUserList.do">회원가입 요청 리스트</a></li>
-      <li><a href="approvalUserList.do">비밀번호 발급 요청 리스트</a></li>
-      <li><a href="changeAllList.do">사용자 일괄-선택 비밀번호 발급</a></li>
-      <li><a href="updateUser.do">개인정보 수정</a></li>
-      <li><a href="option.do">관리자 설정</a></li>
-      <li><a href="workflow.do">워크플로우 생성</a></li>
-      <li><a href="userLogout.do">로그아웃</a></li>
-    </ul>
-    <p>&nbsp;</p>
-  <!-- end .sidebar1 --></div>
-  <div class="content">
-    <h1>&nbsp;</h1>
-
-			<center>
-				<table>
-					<tr>
-						<th>조회 기간:</th>
-						<td><input type="text" id="from" name="startDate" readonly="readonly"> ~ <input type="text" id="to" name="endDate" readonly="readonly"></td>
-					</tr>
-				</table>
-			</center>
-
-			<!-- end .content --></div>
-  <div class="footer">
-    <center>GuardOn V1.01</center>
-  <br>
-    <p>Trust. Technology. Service</p>
-    <!-- end .footer --></div>
-  <!-- end .container --></div>
-  
+<form action = "saveApprovalReport.do" method="post">
+	<table border=1> <!-- border=1은 필수 excel 셀의 테두리가 생기게함 -->        
+        <tr bgcolor=#CACACA>
+            <td>사용자 유형</td>
+            <td>사용자 ID</td>
+            <td>사용자 이름</td>
+            <td>업체 / 사번</td>
+            <td>부서</td>
+            <td>직책</td>
+            <td>패스워드 유형</td>
+            <td>요청 서버</td>
+            <td>사용 ID</td>
+            <td>요청 시간</td>
+            <td>승인/반려 시간</td>
+            <td>승인 여부</td>
+            <td>관리자 ID</td>
+            <td>요청 내용</td>
+        </tr>
+        <c:forEach var="i" items="${approvalList}">
+         	<tr>
+              <td>
+              <c:if test='${i.userType == "admin" }'>관리자</c:if>
+              <c:if test='${i.userType == "user" }'>내부사용자</c:if>
+              <c:if test='${i.userType == "outUser" }'>외부사용자</c:if>
+              </td>
+              <td>${i.userId}</td>
+              <td>${i.userName}</td>
+              <td>${i.companyNumber}</td>
+              <td>${i.userDepartment}</td>
+              <td>${i.userLevel}</td>
+              <td>
+              <c:if test='${i.pwdType == "OTP" }'>일회용 비밀번호</c:if>
+              <c:if test='${i.pwdType == "period" }'>주기적 비밀번호</c:if>
+              </td>
+              <td>${i.serverName}</td>
+              <td>${i.connectId}</td>
+              <td>${i.requestDate}</td>
+              <td>${i.approvalDate}</td>
+              <td>
+              <c:if test='${i.approved == "approved" || i.approved == "expired"}'>승인</c:if>
+              <c:if test='${i.approved == "rejected" }'>반려</c:if>             
+              <c:if test='${i.approved == "unchecked" }'>진행중</c:if>
+              </td>
+              <td>${i.approvalId}</td>
+              <td>${i.requestDesc}</td>
+           </tr>   
+         </c:forEach>
+    </table>
+    <br/><br/>
+    <center>
+    <input type="submit" value="저장">
+    </center>
+	</form>
 </body>
 </html>

@@ -1,6 +1,7 @@
 package com.guardon.report.impl;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -30,6 +31,22 @@ public class ReportDAOImpl implements ReportDAO{
 	@Override
 	public ArrayList<ApprovalInfo> getApprovalInfoAll() throws Exception {
 		return (ArrayList<ApprovalInfo>)sqlMapClient.queryForList("Report.getApprovalInfoAll");
+	}
+	@Override
+	public ArrayList<ApprovalInfo> getApprovalInfoList(Map<String, String> map) throws Exception{
+		return (ArrayList<ApprovalInfo>)sqlMapClient.queryForList("Report.getApprovalInfoList", map);
+	}
+	@Override
+	public ArrayList<ApprovalInfo> getApprovalInfoListByUserId(Map<String, String> map) throws Exception{
+		return (ArrayList<ApprovalInfo>)sqlMapClient.queryForList("Report.getApprovalInfoListByUserId", map);
+	}
+	@Override
+	public ArrayList<ApprovalInfo> getApprovalInfoListByConnectId(Map<String, String> map) throws Exception{
+		return (ArrayList<ApprovalInfo>)sqlMapClient.queryForList("Report.getApprovalInfoListByConnectId", map);
+	}
+	@Override
+	public ArrayList<ApprovalInfo> getApprovalInfoListByServerName(Map<String, String> map) throws Exception{
+		return (ArrayList<ApprovalInfo>)sqlMapClient.queryForList("Report.getApprovalInfoListByServerName", map);
 	}
 	/*
 	@Override

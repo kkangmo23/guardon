@@ -30,20 +30,31 @@
             <td>관리자 ID</td>
             <td>요청 내용</td>
         </tr>
-        <c:forEach var="i" items="${approvalInfo}">
+        <c:forEach var="i" items="${approvalList}">
          	<tr>
-              <td>${i.userType}</td>
+              <td>
+              <c:if test='${i.userType == "admin" }'>관리자</c:if>
+              <c:if test='${i.userType == "user" }'>내부사용자</c:if>
+              <c:if test='${i.userType == "outUser" }'>외부사용자</c:if>
+              </td>
               <td>${i.userId}</td>
               <td>${i.userName}</td>
               <td>${i.companyNumber}</td>
               <td>${i.userDepartment}</td>
               <td>${i.userLevel}</td>
-              <td>${i.pwdType}</td>
+              <td>
+              <c:if test='${i.pwdType == "OTP" }'>일회용 비밀번호</c:if>
+              <c:if test='${i.pwdType == "period" }'>주기적 비밀번호</c:if>
+              </td>
               <td>${i.serverName}</td>
               <td>${i.connectId}</td>
               <td>${i.requestDate}</td>
               <td>${i.approvalDate}</td>
-              <td>${i.approved}</td>
+              <td>
+              <c:if test='${i.approved == "approved" || i.approved == "expired"}'>승인</c:if>
+              <c:if test='${i.approved == "rejected" }'>반려</c:if>             
+              <c:if test='${i.approved == "unchecked" }'>진행중</c:if>
+              </td>
               <td>${i.approvalId}</td>
               <td>${i.requestDesc}</td>
            </tr>   

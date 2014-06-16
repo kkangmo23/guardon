@@ -1,6 +1,8 @@
 package com.guardon.view;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -21,8 +23,49 @@ public class ReportController {
 	@Named("reportService")
 	ReportService reportService;
 	
+	@RequestMapping("approvalReportPretreatment.do")
+	public String approvalReportPretreatment(HttpServletRequest request) throws Exception {
+		return "/Admin/approvalReportPretreatment";
+	}
+	@RequestMapping("saveApprovalReport.do")
+	public String saveApprovalReport(HttpServletRequest request) throws Exception {
+		return "/Admin/saveApprovalReport";
+	}	
 	@RequestMapping("approvalReport.do")
 	public String approvalReport(HttpServletRequest request) throws Exception {
+		
+		ArrayList<ApprovalInfo> approvalList = new ArrayList<ApprovalInfo>();
+		Map<String, String> map = new HashMap<>();
+		
+		map.put("startDate", request.getParameter("startDate"));
+		map.put("endDate", request.getParameter("endDate"));
+
+		switch (request.getParameter("token")) {
+		case "all":
+			approvalList = reportService.getApprovalInfoList(map);
+
+			break;
+		case "userId":
+			map.put("keyValue", request.getParameter("keyValue"));
+			approvalList = reportService.getApprovalInfoListByUserId(map);
+
+			break;
+		case "connectId":
+			map.put("keyValue", request.getParameter("keyValue"));
+			approvalList = reportService.getApprovalInfoListByConnectId(map);
+
+			break;
+		case "serverName":
+			map.put("keyValue", request.getParameter("keyValue"));
+			approvalList = reportService.getApprovalInfoListByServerName(map);
+
+			break;
+
+		default:
+			break;
+		}
+		request.setAttribute("approvalList", approvalList);
+		
 		return "/Admin/approvalReport";
 	}
 	
