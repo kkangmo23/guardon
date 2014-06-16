@@ -59,7 +59,7 @@
          </c:forEach>
     </table>
     <br/><br/>
-    <center>
+    <center>   
     <input type="submit" value="저장">
     </center>
 	</form>

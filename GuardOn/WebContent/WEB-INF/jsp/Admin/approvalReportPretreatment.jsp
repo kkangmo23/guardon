@@ -104,8 +104,7 @@ $(function() {
 				<input type="radio" name="token" value="connectId">사용 ID&nbsp;
 				<input type="radio" name="token" value="serverName">서버 이름&nbsp;&nbsp;&nbsp;
 				<input type="text" name="keyValue">
-				<br/><br/>
-				<input type="submit" value="생성" onclick="popupOpen();">
+				<br/><br/>				
 				<input type="button" value="생성" onclick="popupOpen();">
 				<br/><br/>				
 			</center>

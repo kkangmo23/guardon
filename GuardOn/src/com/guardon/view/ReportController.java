@@ -7,6 +7,7 @@ import java.util.Map;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,11 +29,11 @@ public class ReportController {
 		return "/Admin/approvalReportPretreatment";
 	}
 	@RequestMapping("saveApprovalReport.do")
-	public String saveApprovalReport(HttpServletRequest request) throws Exception {
+	public String saveApprovalReport(HttpServletRequest request) throws Exception {		
 		return "/Admin/saveApprovalReport";
 	}	
 	@RequestMapping("approvalReport.do")
-	public String approvalReport(HttpServletRequest request) throws Exception {
+	public String approvalReport(HttpServletRequest request, HttpSession session) throws Exception {
 		
 		ArrayList<ApprovalInfo> approvalList = new ArrayList<ApprovalInfo>();
 		Map<String, String> map = new HashMap<>();
@@ -64,16 +65,11 @@ public class ReportController {
 		default:
 			break;
 		}
-		request.setAttribute("approvalList", approvalList);
+		//request.setAttribute("approvalList", approvalList);
+		session.setAttribute("approvalList", approvalList);
 		
 		return "/Admin/approvalReport";
 	}
 	
-	@RequestMapping("excelTest.do")
-	public String excelTest(HttpServletRequest request) throws Exception {
-		ArrayList<ApprovalInfo> ai = reportService.getApprovalInfoAll();
-		request.setAttribute("approvalInfo", ai);
-		return "/Admin/excelTest_excel";
-	}
 
 }
