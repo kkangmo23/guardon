@@ -48,6 +48,15 @@ public class ReportServiceImpl implements ReportService{
 	public ArrayList<ApprovalInfo> getApprovalInfoListByServerName(Map<String, String> map) throws Exception{
 		return reportDAO.getApprovalInfoListByServerName(map);
 	}
+	@Override
+	public ArrayList<LogInfo> getLogInfoList(Map<String, String> map) throws Exception{
+		return reportDAO.getLogInfoList(map);
+	}
+	@Override
+	public ArrayList<LogInfo> getLogInfoListByUserId(Map<String, String> map) throws Exception{
+		return reportDAO.getLogInfoListByUserId(map);
+	}
+	
 	
 	/*
 	@Override

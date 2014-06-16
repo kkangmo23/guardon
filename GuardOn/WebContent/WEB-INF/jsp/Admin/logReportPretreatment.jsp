@@ -26,7 +26,7 @@
 
 function popupOpen(){
 
-var popUrl = "approvalReport.do";	//팝업창에 출력될 페이지 URL
+var popUrl = "logReport.do";	//팝업창에 출력될 페이지 URL
 
 var popOption = "width=1080, height=360, resizable=no, scrollbars=no, status=no;";    //팝업창 옵션(optoin)
 
@@ -90,9 +90,9 @@ $(function() {
   <!-- end .sidebar1 --></div>
   <div class="content">
     <h1>&nbsp;</h1>
-    <form action="approvalReport.do" method="post" name="form1">
+    <form action="logReport.do" method="post" name="form1">
 			<center>
-				<table>
+					<table>
 						<tr>
 							<th>조회 기간:</th>
 							<td><input type="text" id="from" name="startDate"
@@ -109,17 +109,12 @@ $(function() {
 							<th>검색 기준:</th>
 							<td>
 							<input type="radio" name="token" value="all">전부 조회&nbsp; 
-							<input type="radio" name="token" value="userId">유저 ID&nbsp; 
-							<input type="radio" name="token" value="connectId">사용 ID&nbsp; 
-							<input type="radio" name="token" value="serverName">서버 이름&nbsp;&nbsp;&nbsp; 
-							<input type="text" name="keyValue">
+							<input type="radio" name="token" value="userId">유저 ID&nbsp;&nbsp;&nbsp; <input type="text" name="keyValue">
 							</td>
 						</tr>
-					</table>				
-				<br/><br/>				
-				<input type="button" value="생성" onclick="popupOpen();">
-				<br/><br/>				
-			</center>
+					</table>
+					<br /> <br /> <input type="button" value="생성" onclick="popupOpen();"> <br /> <br />
+				</center>
 	</form>
 			<!-- end .content --></div>
   <div class="footer">

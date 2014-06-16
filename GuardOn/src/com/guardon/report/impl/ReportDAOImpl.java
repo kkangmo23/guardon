@@ -48,6 +48,15 @@ public class ReportDAOImpl implements ReportDAO{
 	public ArrayList<ApprovalInfo> getApprovalInfoListByServerName(Map<String, String> map) throws Exception{
 		return (ArrayList<ApprovalInfo>)sqlMapClient.queryForList("Report.getApprovalInfoListByServerName", map);
 	}
+	@Override
+	public ArrayList<LogInfo> getLogInfoList(Map<String, String> map) throws Exception{
+		return (ArrayList<LogInfo>)sqlMapClient.queryForList("Report.getLogInfoList", map);
+	}
+	@Override
+	public ArrayList<LogInfo> getLogInfoListByUserId(Map<String, String> map) throws Exception{
+		return (ArrayList<LogInfo>)sqlMapClient.queryForList("Report.getLogInfoListByUserId", map);
+	}
+	
 	/*
 	@Override
 	public ArrayList<RejectInfo> getRejectInfo() throws Exception {

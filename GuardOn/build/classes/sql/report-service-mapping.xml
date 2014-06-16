@@ -115,4 +115,21 @@
 		ORDER BY tbl_request.requestDate ASC			
 	</select>
 	
+	<select id="getLogInfoList" parameterClass="map" resultClass="logInfo">
+		SELECT tbl_user.userId, tbl_user.userName, tbl_user.userDepartment, tbl_user.userLevel, tbl_user.userType, tbl_user.companyNumber, tbl_log.loginTime, tbl_log.logoutTime
+		FROM tbl_user INNER JOIN tbl_log
+		ON tbl_user.userId = tbl_log.userId
+		WHERE tbl_log.loginTime &gt; #startDate# AND (tbl_log.loginTime &lt; #endDate# OR tbl_log.loginTime LIKE CONCAT('%',#endDate#,'%'))
+		ORDER BY tbl_log.loginTime ASC		
+	</select>
+	
+	<select id="getLogInfoListByUserId" parameterClass="map" resultClass="logInfo">
+		SELECT tbl_user.userId, tbl_user.userName, tbl_user.userDepartment, tbl_user.userLevel, tbl_user.userType, tbl_user.companyNumber, tbl_log.loginTime, tbl_log.logoutTime
+		FROM tbl_user INNER JOIN tbl_log
+		ON tbl_user.userId = tbl_log.userId
+		WHERE tbl_log.userId = #keyValue# AND tbl_log.loginTime &gt; #startDate# AND (tbl_log.loginTime &lt; #endDate# OR tbl_log.loginTime LIKE CONCAT('%',#endDate#,'%'))
+		ORDER BY tbl_log.loginTime ASC		
+	</select>
+
+	
 </sqlMap>
