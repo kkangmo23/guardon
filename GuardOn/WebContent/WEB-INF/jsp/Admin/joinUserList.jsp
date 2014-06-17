@@ -8,7 +8,8 @@
 <title>무제 문서</title>
 <link rel="stylesheet" href="<%=cp%>/style/basic.css" type="text/css" media="print, projection, screen" /></head>
 <link rel="stylesheet" href="<%=cp%>/js/__jquery.tablesorter/themes/blue/style.css" type="text/css" media="print, projection, screen" />
-<script src="http://code.jquery.com/jquery-1.7.1.js"></script>
+<script src="<%=cp%>/js/jquery-ui-1.8.18/jquery-1.7.1.js"></script>
+
 <link rel="stylesheet" href="<%=cp%>/style/plugin/asyncPaging.css" type="text/css" media="print, projection, screen" />
 <script type="text/javascript" src="<%=cp%>/js/plugin/asyncPaging.js"></script>
 <script type="text/javascript" src="<%=cp%>/js/__jquery.tablesorter/jquery-latest.js"></script>

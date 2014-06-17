@@ -9,7 +9,8 @@
 <title>무제 문서</title>
 <link rel="stylesheet" type="text/css" href="<%=cp %>/style/portal/magic_common.css" />
 <link rel="stylesheet" href="<%=cp%>/style/basic.css" type="text/css" media="print, projection, screen" />
-<script type="text/javascript" src="<%=cp %>/js/jquery/1.4.2/jquery.min.js"></script>
+<script src="<%=cp%>/js/jquery-ui-1.8.18/jquery-1.7.1.js"></script>
+
 <script language="javascript">
 	$(document).ready(function(){
 		check();

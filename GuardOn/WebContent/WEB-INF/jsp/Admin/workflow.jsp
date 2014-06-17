@@ -230,8 +230,8 @@ function test1(tr){
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.min.js"></script>
  --> 
-<script type="text/javascript" src="<%=cp %>/js/jquery/1.4.2/jquery.min.js"></script>
-<script type="text/javascript" src="<%=cp %>/js/jquery/1.8.0/jquery-ui.min.js"></script>  
+<script src="<%=cp%>/js/jquery-ui-1.8.18/jquery-1.7.1.js"></script>
+<script src="<%=cp%>/js/jquery-ui-1.8.18/ui/jquery-ui.js"></script> 
 <script language="javascript">
 function getItems(exampleNr){
 		var columns = [];

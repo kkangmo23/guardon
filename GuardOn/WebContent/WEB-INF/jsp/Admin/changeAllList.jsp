@@ -7,8 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>무제 문서</title>
 <link rel="stylesheet" href="<%=cp%>/style/basic.css" type="text/css" media="print, projection, screen" /></head>
-<script type="text/javascript" src="<%=cp%>/js/plugin/jquery-2.1.0.min.js"></script>
-
+<script src="<%=cp%>/js/jquery-ui-1.8.18/jquery-1.7.1.js"></script>
 
 <link rel="stylesheet" href="<%=cp%>/js/__jquery.tablesorter/themes/blue/style.css" type="text/css" media="print, projection, screen" />
 <link rel="stylesheet" href="<%=cp%>/style/basic.css" type="text/css" media="print, projection, screen" />

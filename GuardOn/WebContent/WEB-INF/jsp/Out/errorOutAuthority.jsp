@@ -7,8 +7,7 @@
 <title>무제 문서</title>
 <link rel="stylesheet" href="<%=cp%>/style/basic.css" type="text/css" media="print, projection, screen" />
 <link rel="stylesheet" href="<%=cp%>/style/plugin/asyncPaging.css" type="text/css" media="print, projection, screen" />
-<script type="text/javascript" src="<%=cp%>/js/plugin/jquery-2.1.0.min.js"></script>
-<script type="text/javascript" src="<%=cp%>/js/plugin/asyncPaging.js"></script>
+
 </head>
 
 <body>

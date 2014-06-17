@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>무제 문서</title>
 <link rel="stylesheet" href="<%=cp%>/style/basic.css" type="text/css" media="print, projection, screen" /></head>
-<script type="text/javascript" src="<%=cp %>/js/jquery/1.4.2/jquery.min.js"></script>
+<script src="<%=cp%>/js/jquery-ui-1.8.18/jquery-1.7.1.js"></script>
 
 
 <script language="javascript">
