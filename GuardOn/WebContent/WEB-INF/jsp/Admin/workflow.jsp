@@ -7,12 +7,22 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>무제 문서</title>
 
-
-<link rel="stylesheet" href="<%=cp%>/style/basic.css" type="text/css" media="print, projection, screen" />
 <link rel="stylesheet" type="text/css" href="<%=cp %>/style/drag1.css" media="screen" />
 <link rel="stylesheet" type="text/css" href="<%=cp %>/style/drag2.css" media="screen" />
 
+<link rel="stylesheet" href="<%=cp%>/style/basic.css" type="text/css" media="print, projection, screen" />
+<link rel="stylesheet" href="<%=cp%>/style/plugin/asyncPaging.css" type="text/css" media="print, projection, screen" />
 <link rel="stylesheet" href="<%=cp%>/js/__jquery.tablesorter/themes/blue/style.css" type="text/css" media="print, projection, screen" />
+
+<script src="<%=cp%>/js/jquery-ui-1.8.18/jquery-1.7.1.js"></script>
+<script src="<%=cp%>/js/jquery-ui-1.8.18/ui/jquery-ui.js"></script>
+<link rel="stylesheet" href="<%=cp%>/js/jquery-ui-1.8.18/themes/base/jquery-ui.css" />
+
+<script type="text/javascript" src="<%=cp%>/js/plugin/asyncPaging.js"></script>
+
+<script type="text/javascript" src="<%=cp%>/js/__jquery.tablesorter/jquery.tablesorter.js"></script>
+<script type="text/javascript" src="<%=cp%>/js/__jquery.tablesorter/jquery.metadata.js"></script>
+<script type="text/javascript" src="<%=cp%>/js/__jquery.tablesorter/addons/pager/jquery.tablesorter.pager.js"></script>
 
 <script type="text/javascript">
 
@@ -80,11 +90,6 @@ function test1(tr){
  
 	<div class="content">
   
-		<script type="text/javascript" src="<%=cp%>/js/__jquery.tablesorter/jquery-latest.js"></script>
-		<script type="text/javascript" src="<%=cp%>/js/__jquery.tablesorter/jquery.tablesorter.js"></script>
-		<script type="text/javascript" src="<%=cp%>/js/__jquery.tablesorter/jquery.tablesorter.min.js"></script>
-		<script type="text/javascript" src="<%=cp%>/js/__jquery.tablesorter/jquery.metadata.js"></script>
-		<script type="text/javascript" src="<%=cp%>/js/__jquery.tablesorter/addons/pager/jquery.tablesorter.pager.js"></script>
 		<script type="text/javascript">
 		$(function() {
 			$("#tablesorter-demo").tablesorter({sortList:[[0,0],[2,1]], widgets: ['zebra']});
@@ -226,12 +231,6 @@ function test1(tr){
     <!-- end .footer --></div>
   <!-- end .container -->
 
-<!-- 
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.min.js"></script>
- --> 
-<script src="<%=cp%>/js/jquery-ui-1.8.18/jquery-1.7.1.js"></script>
-<script src="<%=cp%>/js/jquery-ui-1.8.18/ui/jquery-ui.js"></script> 
 <script language="javascript">
 function getItems(exampleNr){
 		var columns = [];
