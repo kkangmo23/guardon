@@ -23,23 +23,29 @@
 <script src="<%=cp%>/js/jquery/1.10.4/jquery.js"></script>
 <script src="<%=cp%>/js/jquery/1.10.4/jquery-ui.js"></script>
 <script type="text/javascript">
+	function popupOpen() {
 
-function popupOpen(){
+		var keyValue = document.form1.keyValue.value;
+		var token = document.form1.token.value;
+		var startDate = document.form1.startDate.value;
+		var endDate = document.form1.endDate.value;
+		var popUrl = "approvalReport.do"; //팝업창에 출력될 페이지 URL
+		var popOption = "width=1080, height=360, resizable=no, scrollbars=no, status=no;"; //팝업창 옵션(optoin)
+		
+		if (startDate == "" || endDate == "") {
+			alert("조회 기간을 선택해 주십시오");
+		} else if (keyValue == "" && token != "all") {
+			alert("검색어를 입력해 주십시오");
+		} else {
+			window.open("", "pop", popOption);
 
-var popUrl = "approvalReport.do";	//팝업창에 출력될 페이지 URL
+			document.form1.action = popUrl;
+			document.form1.target = "pop";
+			document.form1.method = "post";
+			document.form1.submit();
+		}
 
-var popOption = "width=1080, height=360, resizable=no, scrollbars=no, status=no;";    //팝업창 옵션(optoin)
-
-window.open("","pop",popOption);
-
-document.form1.action = popUrl;
-document.form1.target = "pop";
-document.form1.method = "post";
-document.form1.submit();
-
-}
-
-
+	}
 </script>
 <script language="javascript">
 $(function() {
@@ -108,11 +114,11 @@ $(function() {
 						<tr>
 							<th>검색 기준:</th>
 							<td>
-							<input type="radio" name="token" value="all">전부 조회&nbsp; 
+							<input type="radio" name="token" value="all" checked="checked">전부 조회&nbsp; 
 							<input type="radio" name="token" value="userId">유저 ID&nbsp; 
 							<input type="radio" name="token" value="connectId">사용 ID&nbsp; 
 							<input type="radio" name="token" value="serverName">서버 이름&nbsp;&nbsp;&nbsp; 
-							<input type="text" name="keyValue">
+							<input type="text" id="keyValue" name="keyValue">
 							</td>
 						</tr>
 					</table>				
