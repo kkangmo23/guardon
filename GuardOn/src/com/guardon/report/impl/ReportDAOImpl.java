@@ -41,6 +41,10 @@ public class ReportDAOImpl implements ReportDAO{
 		return (ArrayList<ApprovalInfo>)sqlMapClient.queryForList("Report.getApprovalInfoListByUserId", map);
 	}
 	@Override
+	public ArrayList<ApprovalInfo> getApprovalInfoListByApprovalId(Map<String, String> map) throws Exception{
+		return (ArrayList<ApprovalInfo>)sqlMapClient.queryForList("Report.getApprovalInfoListByApprovalId", map);
+	}
+	@Override
 	public ArrayList<ApprovalInfo> getApprovalInfoListByConnectId(Map<String, String> map) throws Exception{
 		return (ArrayList<ApprovalInfo>)sqlMapClient.queryForList("Report.getApprovalInfoListByConnectId", map);
 	}

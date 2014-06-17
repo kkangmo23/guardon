@@ -99,6 +99,14 @@
 		ORDER BY tbl_request.requestDate ASC			
 	</select>
 	
+	<select id="getApprovalInfoListByApprovalId" parameterClass="map" resultClass="approvalInfo">
+		SELECT tbl_user.userId, tbl_user.userName, tbl_user.userDepartment, tbl_user.userLevel, tbl_user.userType, tbl_user.companyNumber, tbl_request.requestDate, tbl_request.approvalDate, tbl_request.pwdType, tbl_request.approvalId, tbl_request.serverName, tbl_request.requestDesc, tbl_request.approved, tbl_request.connectId
+		FROM tbl_user INNER JOIN tbl_request
+		ON tbl_user.userId = tbl_request.userId
+		WHERE tbl_request.approvalId = #keyValue# AND tbl_request.requestDate &gt; #startDate# AND (tbl_request.requestDate &lt; #endDate# OR tbl_request.requestDate LIKE CONCAT('%',#endDate#,'%'))
+		ORDER BY tbl_request.requestDate ASC			
+	</select>
+	
 	<select id="getApprovalInfoListByConnectId" parameterClass="map" resultClass="approvalInfo">
 		SELECT tbl_user.userId, tbl_user.userName, tbl_user.userDepartment, tbl_user.userLevel, tbl_user.userType, tbl_user.companyNumber, tbl_request.requestDate, tbl_request.approvalDate, tbl_request.pwdType, tbl_request.approvalId, tbl_request.serverName, tbl_request.requestDesc, tbl_request.approved, tbl_request.connectId
 		FROM tbl_user INNER JOIN tbl_request

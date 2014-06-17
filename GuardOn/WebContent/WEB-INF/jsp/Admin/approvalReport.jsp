@@ -12,7 +12,7 @@
 <body>
 <form action = "saveApprovalReport.do" method="post">
 	<table border=1> <!-- border=1은 필수 excel 셀의 테두리가 생기게함 -->        
-        <tr bgcolor=#CACACA>
+        <tr bgcolor=#CACACA align="center">
             <td>사용자 유형</td>
             <td>사용자 ID</td>
             <td>사용자 이름</td>
@@ -26,7 +26,7 @@
             <td>승인/반려 시간</td>
             <td>승인 여부</td>
             <td>관리자 ID</td>
-            <td>요청 내용</td>
+            <td width="300px">요청 내용</td>
         </tr>
         <c:forEach var="i" items="${approvalList}">
          	<tr>

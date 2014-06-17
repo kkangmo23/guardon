@@ -13,6 +13,7 @@ public interface ReportDAO {
 	public ArrayList<ApprovalInfo> getApprovalInfoAll() throws Exception;
 	public ArrayList<ApprovalInfo> getApprovalInfoList(Map<String, String> map) throws Exception;
 	public ArrayList<ApprovalInfo> getApprovalInfoListByUserId(Map<String, String> map) throws Exception;
+	public ArrayList<ApprovalInfo> getApprovalInfoListByApprovalId(Map<String, String> map) throws Exception;
 	public ArrayList<ApprovalInfo> getApprovalInfoListByConnectId(Map<String, String> map) throws Exception;
 	public ArrayList<ApprovalInfo> getApprovalInfoListByServerName(Map<String, String> map) throws Exception;
 	public ArrayList<LogInfo> getLogInfoList(Map<String, String> map) throws Exception;

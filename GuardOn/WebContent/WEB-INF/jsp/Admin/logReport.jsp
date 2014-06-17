@@ -12,7 +12,7 @@
 <body>
 <form action = "saveLogReport.do" method="post">
 	<table border=1> <!-- border=1은 필수 excel 셀의 테두리가 생기게함 -->        
-        <tr bgcolor=#CACACA>
+        <tr bgcolor=#CACACA align="center">
             <td>사용자 유형</td>
             <td>사용자 ID</td>
             <td>사용자 이름</td>

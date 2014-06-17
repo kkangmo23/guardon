@@ -7,18 +7,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>무제 문서</title>
 <link rel="stylesheet" href="<%=cp%>/style/basic.css" type="text/css" media="print, projection, screen" />
-<link rel="stylesheet" href="<%=cp%>/js/__jquery.tablesorter/themes/blue/style.css" type="text/css" media="print, projection, screen" />
+<link rel="stylesheet" href="<%=cp%>/js/jquery/1.10.4/jquery-ui.css" />
 
 <script type="text/javascript" src="<%=cp%>/js/plugin/jquery-2.1.0.min.js"></script>
-<script type="text/javascript" src="<%=cp%>/js/plugin/asyncPaging.js"></script>
-
-<script type="text/javascript" src="<%=cp%>/js/__jquery.tablesorter/jquery-latest.js"></script>
-<script type="text/javascript" src="<%=cp%>/js/__jquery.tablesorter/jquery.tablesorter.js"></script>
-<script type="text/javascript" src="<%=cp%>/js/__jquery.tablesorter/jquery.tablesorter.min.js"></script>
-<script type="text/javascript" src="<%=cp%>/js/__jquery.tablesorter/jquery.metadata.js"></script>
-<script type="text/javascript" src="<%=cp%>/js/__jquery.tablesorter/addons/pager/jquery.tablesorter.pager.js"></script>
-
-<link rel="stylesheet" href="<%=cp%>/js/jquery/1.10.4/jquery-ui.css" />
 
 <script src="<%=cp%>/js/jquery/1.10.4/jquery.js"></script>
 <script src="<%=cp%>/js/jquery/1.10.4/jquery-ui.js"></script>
@@ -115,7 +106,8 @@ $(function() {
 							<th>검색 기준:</th>
 							<td>
 							<input type="radio" name="token" value="all" checked="checked">전부 조회&nbsp; 
-							<input type="radio" name="token" value="userId">유저 ID&nbsp; 
+							<input type="radio" name="token" value="userId">요청자 ID&nbsp; 
+							<input type="radio" name="token" value="approvalId">승인자 ID&nbsp; 
 							<input type="radio" name="token" value="connectId">사용 ID&nbsp; 
 							<input type="radio" name="token" value="serverName">서버 이름&nbsp;&nbsp;&nbsp; 
 							<input type="text" id="keyValue" name="keyValue">

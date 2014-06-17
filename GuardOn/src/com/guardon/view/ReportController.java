@@ -52,6 +52,11 @@ public class ReportController {
 			approvalList = reportService.getApprovalInfoListByUserId(map);
 
 			break;
+		case "approvalId":
+			map.put("keyValue", request.getParameter("keyValue"));
+			approvalList = reportService.getApprovalInfoListByApprovalId(map);
+
+			break;
 		case "connectId":
 			map.put("keyValue", request.getParameter("keyValue"));
 			approvalList = reportService.getApprovalInfoListByConnectId(map);

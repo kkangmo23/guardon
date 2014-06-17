@@ -41,6 +41,10 @@ public class ReportServiceImpl implements ReportService{
 		return reportDAO.getApprovalInfoListByUserId(map);
 	}
 	@Override
+	public ArrayList<ApprovalInfo> getApprovalInfoListByApprovalId(Map<String, String> map) throws Exception{
+		return reportDAO.getApprovalInfoListByApprovalId(map);
+	}
+	@Override
 	public ArrayList<ApprovalInfo> getApprovalInfoListByConnectId(Map<String, String> map) throws Exception{
 		return reportDAO.getApprovalInfoListByConnectId(map);
 	}
