@@ -50,6 +50,7 @@ import com.guardon.log.domain.Log;
 import com.guardon.option.OptionService;
 import com.guardon.option.domain.Option;
 import com.guardon.report.ReportService;
+import com.guardon.report.domain.ApprovalInfo;
 import com.guardon.request.RequestService;
 import com.guardon.request.domain.History;
 import com.guardon.request.domain.Request;
@@ -109,6 +110,62 @@ public class UserController {
 		this.serverLock = serverLock;
 	}
 
+	@RequestMapping("userList.do")
+	public String userList(HttpServletRequest request) throws Exception {
+
+		return "/Admin/userList";
+	}
+	
+	@RequestMapping("getUserList.do")
+	public String getUserList(HttpServletRequest request) throws Exception {
+		ArrayList<User> userList = new ArrayList<User>();
+		Map<String, String> map = new HashMap<>();
+		String userTypeValues = "";
+		
+		String pageParam = request.getParameter("page");
+		if (pageParam == null || pageParam.equals("")) {
+			pageParam = "1";
+		}
+		map.put("page", pageParam);		
+		
+		String[] temp = request.getParameterValues("userType");
+		for (int i = 0; i < temp.length; i++) {
+			userTypeValues+=temp[i];
+			userTypeValues+=',';
+		}
+		map.put("userTypeValues", userTypeValues);
+
+		switch (request.getParameter("token")) {
+		case "all":
+			userList = userService.getUserListAll(map);
+
+			break;
+		case "userId":
+			map.put("keyValue", request.getParameter("keyValue"));
+			userList = userService.getUserListByUserId(map);
+
+			break;
+		case "userName":
+			map.put("keyValue", request.getParameter("keyValue"));
+			userList = userService.getUserListByUserName(map);
+
+			break;
+		case "companyNumber":
+			map.put("keyValue", request.getParameter("keyValue"));
+			userList = userService.getUserListByCompanyNumber(map);
+
+			break;		
+
+		default:
+			break;
+		}
+		
+		request.setAttribute("userList", userList);
+
+		
+		return "/Admin/userList";
+	}
+	
 	@RequestMapping("findId.do")
 	public String findId(HttpServletRequest request) throws Exception {
 
