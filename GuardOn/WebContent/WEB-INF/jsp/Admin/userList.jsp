@@ -82,14 +82,14 @@ $(function() {
 						<table id="tablesorter-demo" class="tablesorter" border="0" cellpadding="0" cellspacing="1">
 		<thead>
         <tr>
-            <td>사용자 유형</td>
-            <td>ID</td>
-            <td>이름</td>
-            <td>사번/업체명</td>
-            <td>부서</td>
-            <td>직책</td>
-            <td>E-mail</td>
-            <td>연락처</td>
+            <th>사용자 유형</th>
+            <th>ID</th>
+            <th>이름</th>
+            <th>사번/업체명</th>
+            <th>부서</th>
+            <th>직책</th>
+            <th>E-mail</th>
+            <th>연락처</th>
             
         </tr>
         </thead>
