@@ -7,14 +7,16 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>무제 문서</title>
 <link rel="stylesheet" href="<%=cp%>/style/basic.css" type="text/css" media="print, projection, screen" />
+<link rel="stylesheet" href="<%=cp%>/style/plugin/asyncPaging.css" type="text/css" media="print, projection, screen" />
 <link rel="stylesheet" href="<%=cp%>/js/__jquery.tablesorter/themes/blue/style.css" type="text/css" media="print, projection, screen" />
-<script type="text/javascript" src="<%=cp%>/js/plugin/jquery-2.1.0.min.js"></script>
+
+<script src="<%=cp%>/js/jquery-ui-1.8.18/jquery-1.7.1.js"></script>
+<script src="<%=cp%>/js/jquery-ui-1.8.18/ui/jquery-ui.js"></script>
+<link rel="stylesheet" href="<%=cp%>/js/jquery-ui-1.8.18/themes/base/jquery-ui.css" />
+
 <script type="text/javascript" src="<%=cp%>/js/plugin/asyncPaging.js"></script>
 
-
-<script type="text/javascript" src="<%=cp%>/js/__jquery.tablesorter/jquery-latest.js"></script>
 <script type="text/javascript" src="<%=cp%>/js/__jquery.tablesorter/jquery.tablesorter.js"></script>
-<script type="text/javascript" src="<%=cp%>/js/__jquery.tablesorter/jquery.tablesorter.min.js"></script>
 <script type="text/javascript" src="<%=cp%>/js/__jquery.tablesorter/jquery.metadata.js"></script>
 <script type="text/javascript" src="<%=cp%>/js/__jquery.tablesorter/addons/pager/jquery.tablesorter.pager.js"></script>
 
