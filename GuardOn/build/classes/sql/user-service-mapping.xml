@@ -159,4 +159,28 @@
 		WHERE userId = #userId# AND userEmail= #userEmail#
 	</select>
 	
+	<select id="getUserListAll" parameterClass="map" resultClass="user" >
+		SELECT userType, userId, userName, companyNumber, userDepartment, userLevel, userEmail, PhoneNumber
+		FROM tbl_user
+		WHERE userType IN (#admin#, #user#, #outUser#)
+	</select>
+	
+	<select id="getUserListByUserId" parameterClass="map" resultClass="user" >
+		SELECT userType, userId, userName, companyNumber, userDepartment, userLevel, userEmail, PhoneNumber
+		FROM tbl_user
+		WHERE userType IN (#admin#, #user#, #outUser#) AND userId=#keyValue#
+	</select>
+	
+	<select id="getUserListByUserName" parameterClass="map" resultClass="user" >
+		SELECT userType, userId, userName, companyNumber, userDepartment, userLevel, userEmail, PhoneNumber
+		FROM tbl_user
+		WHERE userType IN (#admin#, #user#, #outUser#) AND userName=#keyValue#
+	</select>
+	
+	<select id="getUserListByCompanyNumber" parameterClass="map" resultClass="user" >
+		SELECT userType, userId, userName, companyNumber, userDepartment, userLevel, userEmail, PhoneNumber
+		FROM tbl_user
+		WHERE userType IN (#admin#, #user#, #outUser#) AND companyNumber=#keyValue#
+	</select>
+	
 </sqlMap>

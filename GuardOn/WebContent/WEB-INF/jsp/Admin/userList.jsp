@@ -7,62 +7,16 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>무제 문서</title>
 <link rel="stylesheet" href="<%=cp%>/style/basic.css" type="text/css" media="print, projection, screen" />
-<link rel="stylesheet" href="<%=cp%>/style/plugin/asyncPaging.css" type="text/css" media="print, projection, screen" />
 <link rel="stylesheet" href="<%=cp%>/js/__jquery.tablesorter/themes/blue/style.css" type="text/css" media="print, projection, screen" />
-
-<script src="<%=cp%>/js/jquery-ui-1.8.18/jquery-1.7.1.js"></script>
-<script src="<%=cp%>/js/jquery-ui-1.8.18/ui/jquery-ui.js"></script>
-<link rel="stylesheet" href="<%=cp%>/js/jquery-ui-1.8.18/themes/base/jquery-ui.css" />
-
+<script type="text/javascript" src="<%=cp%>/js/plugin/jquery-2.1.0.min.js"></script>
 <script type="text/javascript" src="<%=cp%>/js/plugin/asyncPaging.js"></script>
 
+
+<script type="text/javascript" src="<%=cp%>/js/__jquery.tablesorter/jquery-latest.js"></script>
 <script type="text/javascript" src="<%=cp%>/js/__jquery.tablesorter/jquery.tablesorter.js"></script>
+<script type="text/javascript" src="<%=cp%>/js/__jquery.tablesorter/jquery.tablesorter.min.js"></script>
 <script type="text/javascript" src="<%=cp%>/js/__jquery.tablesorter/jquery.metadata.js"></script>
 <script type="text/javascript" src="<%=cp%>/js/__jquery.tablesorter/addons/pager/jquery.tablesorter.pager.js"></script>
-
-<script type="text/javascript">
-
-	$(document).ready(function(){
-
-		asyncPaging.title.previous = "<";
-		asyncPaging.title.next = ">";
-		asyncPaging.onclick = "pageMove()";
-		asyncPaging.init("paging", Number($("#serverListCount").val()), 15, Number($("#currentPage").val()));
-
-		var serverIps = $(".server-ip");
-		for(var i=0; i<serverIps.length; i++){
-			tcpCheck({ ip: serverIps[i].innerHTML.split(":")[0] }, function(resp, index){
-				var result = JSON.parse(resp).result;
-				$(".tcp-check")[index].innerHTML = result;
-			}, i);
-		}
-		
-		
-	});
-	
-	var tcpCheckCallCount = 10;
-	function tcpCheck(data, callback, index){
-		setTimeout(function(){
-			$.ajax({
-				type: "GET",
-				cache: false,
-				url: "./tcpCheck.do",
-				contentType : "application/x-www-form-urlencoded; charset=UTF-8",
-				data: data,
-				success: function(resp, textStatus, jqXHR){
-					callback(resp, index);
-				}, 
-				failure: function(resp, textStatus, jqXHR){
-					$(".tcp-check")[index].innerHTML = "FAILURE(ERROR)";
-				}
-			});	
-		}, index*500);
-	}
-	
-	function pageMove(){
-		location.href = "./outPeriodPwdServerSelect.do?page="+asyncPaging.options.currentPage;
-	}
-</script>
 
 <script type="text/javascript">
 $(function() {		
@@ -113,18 +67,19 @@ $(function() {
 
 						<tr>							
 							<td>
-							<input type="radio" name="token" value="all" checked="checked">전부 조회&nbsp; 
+							<input type="radio" name="token" value="all" checked="checked">전체 조회&nbsp; 
 							<input type="radio" name="token" value="userId">ID&nbsp; 
-							<input type="radio" name="token" value="approvalId">이름&nbsp; 
-							<input type="radio" name="token" value="connectId">사번/업체명&nbsp;&nbsp;&nbsp; 							
+							<input type="radio" name="token" value="userName">이름&nbsp; 
+							<input type="radio" name="token" value="companyNumber">사번/업체명&nbsp;&nbsp;&nbsp; 							
 							<input type="text" id="keyValue" name="keyValue">&nbsp;&nbsp;&nbsp;
 							<input type="submit" value="조회">
 							</td>
 						</tr>
 					</table>	
 						<br/><br/>
-		<table border=1>
-        <tr bgcolor=#CACACA align="center">
+						<table id="tablesorter-demo" class="tablesorter" border="0" cellpadding="0" cellspacing="1">
+		<thead>
+        <tr>
             <td>사용자 유형</td>
             <td>ID</td>
             <td>이름</td>
@@ -135,6 +90,7 @@ $(function() {
             <td>연락처</td>
             
         </tr>
+        </thead>
         <c:forEach var="i" items="${userList}">
          	<tr>
               <td>
@@ -153,8 +109,10 @@ $(function() {
            </tr>   
          </c:forEach>
     </table>
+		
 			</center>
 	</form>
+	
 			<!-- end .content --></div>
   <div class="footer">
     <center>GuardOn V1.01</center>

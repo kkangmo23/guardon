@@ -107,7 +107,7 @@ $(function() {
 						<tr>
 							<th>검색 기준:</th>
 							<td>
-							<input type="radio" name="token" value="all" checked="checked">전부 조회&nbsp; 
+							<input type="radio" name="token" value="all" checked="checked">전체 조회&nbsp; 
 							<input type="radio" name="token" value="userId">유저 ID&nbsp;&nbsp;&nbsp; <input type="text" name="keyValue">
 							</td>
 						</tr>

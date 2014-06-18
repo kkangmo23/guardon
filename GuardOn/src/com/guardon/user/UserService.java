@@ -48,5 +48,13 @@ public interface UserService {
 	public int countPwd(Map<String, String> map) throws Exception;
 	
 	public String getPwd(Map<String, String> map) throws Exception;
+	
+	public ArrayList<User> getUserListAll(Map<String, String> map) throws Exception;
+	
+	public ArrayList<User> getUserListByUserId(Map<String, String> map) throws Exception;
+	
+	public ArrayList<User> getUserListByUserName(Map<String, String> map) throws Exception;
+	
+	public ArrayList<User> getUserListByCompanyNumber(Map<String, String> map) throws Exception;
 
 }

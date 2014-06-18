@@ -136,5 +136,25 @@ public class UserDAOImpl implements UserDAO {
 	public int countPwd(Map<String, String> map) throws Exception {
 		return (int) sqlMapClient.queryForObject("User.countPwd", map);
 	}
+	
+	@Override
+	public ArrayList<User> getUserListAll(Map<String, String> map) throws Exception {
+		return (ArrayList<User>) sqlMapClient.queryForList("User.getUserListAll", map);
+	}
+	
+	@Override
+	public ArrayList<User> getUserListByUserId(Map<String, String> map) throws Exception {
+		return (ArrayList<User>) sqlMapClient.queryForList("User.getUserListByUserId", map);
+	}
+	
+	@Override
+	public ArrayList<User> getUserListByUserName(Map<String, String> map) throws Exception {
+		return (ArrayList<User>) sqlMapClient.queryForList("User.getUserListByUserName", map);
+	}
+	
+	@Override
+	public ArrayList<User> getUserListByCompanyNumber(Map<String, String> map) throws Exception {
+		return (ArrayList<User>) sqlMapClient.queryForList("User.getUserListByCompanyNumber", map);
+	}
 
 }

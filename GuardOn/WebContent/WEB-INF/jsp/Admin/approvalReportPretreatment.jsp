@@ -104,7 +104,7 @@ $(function() {
 						<tr>
 							<th>검색 기준:</th>
 							<td>
-							<input type="radio" name="token" value="all" checked="checked">전부 조회&nbsp; 
+							<input type="radio" name="token" value="all" checked="checked">전체 조회&nbsp; 
 							<input type="radio" name="token" value="userId">요청자 ID&nbsp; 
 							<input type="radio" name="token" value="approvalId">승인자 ID&nbsp; 
 							<input type="radio" name="token" value="connectId">사용 ID&nbsp; 

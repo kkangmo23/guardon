@@ -130,5 +130,25 @@ public class UserServiceImpl implements UserService {
 	public int countPwd(Map<String, String> map) throws Exception {
 		return userDAO.countPwd(map);
 	}
+	
+	@Override
+	public ArrayList<User> getUserListAll(Map<String, String> map) throws Exception {
+		return userDAO.getUserListAll(map);
+	}
+	
+	@Override
+	public ArrayList<User> getUserListByUserId(Map<String, String> map) throws Exception {
+		return userDAO.getUserListByUserId(map);
+	}
+	
+	@Override
+	public ArrayList<User> getUserListByUserName(Map<String, String> map) throws Exception {
+		return userDAO.getUserListByUserName(map);
+	}
+	
+	@Override
+	public ArrayList<User> getUserListByCompanyNumber(Map<String, String> map) throws Exception {
+		return userDAO.getUserListByCompanyNumber(map);
+	}
 
 }

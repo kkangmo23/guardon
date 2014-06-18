@@ -120,7 +120,9 @@ public class UserController {
 	public String getUserList(HttpServletRequest request) throws Exception {
 		ArrayList<User> userList = new ArrayList<User>();
 		Map<String, String> map = new HashMap<>();
-		String userTypeValues = "";
+		String admin="";
+		String user="";
+		String outUser="";
 		
 		String pageParam = request.getParameter("page");
 		if (pageParam == null || pageParam.equals("")) {
@@ -128,12 +130,20 @@ public class UserController {
 		}
 		map.put("page", pageParam);		
 		
-		String[] temp = request.getParameterValues("userType");
+		String[] temp  = request.getParameterValues("userType");
+		
 		for (int i = 0; i < temp.length; i++) {
-			userTypeValues+=temp[i];
-			userTypeValues+=',';
+			if (temp[i].equals("admin"))
+				admin="admin";
+			else if (temp[i].equals("user"))
+				user="user";
+			else if (temp[i].equals("outUser"))
+				outUser="outUser";
 		}
-		map.put("userTypeValues", userTypeValues);
+		map.put("admin", admin);
+		map.put("user", user);
+		map.put("outUser", outUser);
+		
 
 		switch (request.getParameter("token")) {
 		case "all":
@@ -161,7 +171,6 @@ public class UserController {
 		}
 		
 		request.setAttribute("userList", userList);
-
 		
 		return "/Admin/userList";
 	}
