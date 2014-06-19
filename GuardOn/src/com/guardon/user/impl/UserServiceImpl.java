@@ -133,22 +133,50 @@ public class UserServiceImpl implements UserService {
 	
 	@Override
 	public ArrayList<User> getUserListAll(Map<String, String> map) throws Exception {
+		int startIndex = (Integer.parseInt(map.get("page")) - 1)*15;
+		map.put("page", String.valueOf(startIndex));
 		return userDAO.getUserListAll(map);
 	}
 	
 	@Override
 	public ArrayList<User> getUserListByUserId(Map<String, String> map) throws Exception {
+		int startIndex = (Integer.parseInt(map.get("page")) - 1)*15;
+		map.put("page", String.valueOf(startIndex));
 		return userDAO.getUserListByUserId(map);
 	}
 	
 	@Override
 	public ArrayList<User> getUserListByUserName(Map<String, String> map) throws Exception {
+		int startIndex = (Integer.parseInt(map.get("page")) - 1)*15;
+		map.put("page", String.valueOf(startIndex));
 		return userDAO.getUserListByUserName(map);
 	}
 	
 	@Override
 	public ArrayList<User> getUserListByCompanyNumber(Map<String, String> map) throws Exception {
+		int startIndex = (Integer.parseInt(map.get("page")) - 1)*15;
+		map.put("page", String.valueOf(startIndex));
 		return userDAO.getUserListByCompanyNumber(map);
+	}
+	
+	@Override
+	public int getUserListAllCount(Map<String, String> map) throws Exception {
+		return userDAO.getUserListAllCount(map);
+	}
+	
+	@Override
+	public int getUserListByUserIdCount(Map<String, String> map) throws Exception {
+		return userDAO.getUserListByUserIdCount(map);
+	}
+	
+	@Override
+	public int getUserListByUserNameCount(Map<String, String> map) throws Exception {
+		return userDAO.getUserListByUserNameCount(map);
+	}
+	
+	@Override
+	public int getUserListByCompanyNumberCount(Map<String, String> map) throws Exception {
+		return userDAO.getUserListByCompanyNumberCount(map);
 	}
 	
 	@Override

@@ -138,23 +138,43 @@ public class UserDAOImpl implements UserDAO {
 	}
 	
 	@Override
-	public ArrayList<User> getUserListAll(Map<String, String> map) throws Exception {
+	public ArrayList<User> getUserListAll(Map<String, String> map) throws Exception {		
 		return (ArrayList<User>) sqlMapClient.queryForList("User.getUserListAll", map);
 	}
 	
 	@Override
-	public ArrayList<User> getUserListByUserId(Map<String, String> map) throws Exception {
+	public ArrayList<User> getUserListByUserId(Map<String, String> map) throws Exception {		
 		return (ArrayList<User>) sqlMapClient.queryForList("User.getUserListByUserId", map);
 	}
 	
 	@Override
-	public ArrayList<User> getUserListByUserName(Map<String, String> map) throws Exception {
+	public ArrayList<User> getUserListByUserName(Map<String, String> map) throws Exception {		
 		return (ArrayList<User>) sqlMapClient.queryForList("User.getUserListByUserName", map);
 	}
 	
 	@Override
-	public ArrayList<User> getUserListByCompanyNumber(Map<String, String> map) throws Exception {
+	public ArrayList<User> getUserListByCompanyNumber(Map<String, String> map) throws Exception {		
 		return (ArrayList<User>) sqlMapClient.queryForList("User.getUserListByCompanyNumber", map);
+	}
+	
+	@Override
+	public int getUserListAllCount(Map<String, String> map) throws Exception {		
+		return (int) sqlMapClient.queryForObject("User.getUserListAllCount", map);
+	}
+	
+	@Override
+	public int getUserListByUserIdCount(Map<String, String> map) throws Exception {		
+		return (int) sqlMapClient.queryForObject("User.getUserListByUserIdCount", map);
+	}
+	
+	@Override
+	public int getUserListByUserNameCount(Map<String, String> map) throws Exception {		
+		return (int) sqlMapClient.queryForObject("User.getUserListByUserNameCount", map);
+	}
+	
+	@Override
+	public int getUserListByCompanyNumberCount(Map<String, String> map) throws Exception {		
+		return (int) sqlMapClient.queryForObject("User.getUserListByCompanyNumberCount", map);
 	}
 	
 	@Override

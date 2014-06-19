@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=utf-8" language="java" import="java.sql.*" errorPage="" %>
+<%@ page contentType="text/html; charset=utf-8" language="java" import="java.sql.*" errorPage=""%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <% String cp=request.getContextPath(); %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -20,6 +20,30 @@
 <script type="text/javascript" src="<%=cp%>/js/__jquery.tablesorter/jquery.metadata.js"></script>
 <script type="text/javascript" src="<%=cp%>/js/__jquery.tablesorter/addons/pager/jquery.tablesorter.pager.js"></script>
 
+<script type="text/javascript">
+
+function emptyCheck(){
+	var form = document.forms['form1'];
+	var userType = document.form1.userType;
+	var token = document.form1.token.value;
+	var keyValue = document.form1.keyValue.value;
+	var checked = false;
+	
+	for (var i = 0; i < userType.length; i++) {
+		if(userType[i].checked==true)
+			checked = true;		
+	}
+	
+	if(checked == false){
+		alert("최소한 하나 이상의 사용자 유형을 체크해 주십시오");
+	} else if (keyValue == "" && token != "all") {
+		alert("검색어를 입력해 주십시오");
+	} else {
+		form.action = 'getUserList.do';
+		form.submit();
+	}
+}
+</script>
  <script type="text/javascript">
 
 	$(document).ready(function(){
@@ -31,7 +55,12 @@
 	});
 	
 	function pageMove(){
-		location.href = "./getUserList.do?page="+asyncPaging.options.currentPage+"&userType=admin&userType=user&userType=outUser&token=all&keyValue=";
+		var token = document.form1.hiddenToken.value;
+		var keyValue = document.form1.hiddenKeyValue.value;
+		var userListCount = document.form1.userListCount.value;		
+		
+		location.href = "./getUserList.do?userListCount="+userListCount+"&access=paging&page="+asyncPaging.options.currentPage+
+				"&userType=admin&userType=user&userType=outUser&token="+token+"&keyValue="+keyValue;
 	}
 </script>
 
@@ -66,7 +95,7 @@ $(function() {
   <!-- end .sidebar1 --></div>
   <div class="content">
     <h1>&nbsp;</h1>
-    <form action="getUserList.do" method="post">
+    <form action="getUserList.do" method="post" name="form1">
 			<center>
 				<table>
 						<tr>							
@@ -84,12 +113,12 @@ $(function() {
 
 						<tr>							
 							<td>
-							<input type="radio" name="token" value="all" checked="checked">전체 조회&nbsp; 
-							<input type="radio" name="token" value="userId">ID&nbsp; 
-							<input type="radio" name="token" value="userName">이름&nbsp; 
-							<input type="radio" name="token" value="companyNumber">사번/업체명&nbsp;&nbsp;&nbsp; 							
-							<input type="text" id="keyValue" name="keyValue">&nbsp;&nbsp;&nbsp;
-							<input type="submit" value="조회">
+							<input type="radio" name="token" value="all" <c:if test='${token == "all" }'>checked="checked"</c:if>>전체 조회&nbsp; 
+							<input type="radio" name="token" value="userId" <c:if test='${token == "userId" }'>checked="checked"</c:if>>ID&nbsp; 
+							<input type="radio" name="token" value="userName" <c:if test='${token == "userName" }'>checked="checked"</c:if>>이름&nbsp; 
+							<input type="radio" name="token" value="companyNumber" <c:if test='${token == "companyNumber" }'>checked="checked"</c:if>>사번/업체명&nbsp;&nbsp;&nbsp; 							
+							<input type="text" name="keyValue" value="${keyValue}">&nbsp;&nbsp;&nbsp;
+							<input type="button" value="조회" onclick="emptyCheck();">
 							</td>
 						</tr>
 					</table>	
@@ -128,7 +157,10 @@ $(function() {
     </table>
     <div id="paging" style="height:100px;"></div>
     <input id="currentPage" type="hidden" value="${page}" />
-    <input id="userListCount" type="hidden" value="${userListCount}" />
+    <input name="userListCount" id="userListCount" type="hidden" value="${userListCount}" />
+    <input name="hiddenToken" type="hidden" value="${token}" />
+    <input name="hiddenKeyValue" type="hidden" value="${keyValue}" />
+    <input name="access" type="hidden" value="search" />    
 		
 			</center>
 	</form>

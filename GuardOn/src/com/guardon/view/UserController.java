@@ -3,6 +3,8 @@ package com.guardon.view;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.InetAddress;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -112,17 +114,25 @@ public class UserController {
 
 	@RequestMapping("userList.do")
 	public String userList(HttpServletRequest request) throws Exception {
+		
+		request.setAttribute("token", "all");
+		request.setAttribute("userListCount", "0");
 
 		return "/Admin/userList";
 	}
 	
 	@RequestMapping("getUserList.do")
-	public String getUserList(HttpServletRequest request) throws Exception {
+	public String getUserList(HttpServletRequest request) throws Exception {		
 		ArrayList<User> userList = new ArrayList<User>();
 		Map<String, String> map = new HashMap<>();
 		String admin="";
 		String user="";
 		String outUser="";
+		String token = request.getParameter("token");
+		String keyValue = request.getParameter("keyValue");		
+		System.out.println(keyValue);
+		String access = request.getParameter("access");
+		int userListCount = Integer.parseInt(request.getParameter("userListCount"));		
 		
 		String pageParam = request.getParameter("page");
 		if (pageParam == null || pageParam.equals("")) {
@@ -147,33 +157,42 @@ public class UserController {
 		map.put("outUser", outUser);
 		
 
-		switch (request.getParameter("token")) {
+		switch (token) {
 		case "all":
 			userList = userService.getUserListAll(map);
+			if(access.equals("search"))
+				userListCount = userService.getUserListAllCount(map);
 
 			break;
 		case "userId":
-			map.put("keyValue", request.getParameter("keyValue"));
+			map.put("keyValue", keyValue);
 			userList = userService.getUserListByUserId(map);
+			if(access.equals("search"))
+				userListCount = userService.getUserListByUserIdCount(map);
 
 			break;
 		case "userName":
-			map.put("keyValue", request.getParameter("keyValue"));
+			map.put("keyValue", keyValue);
 			userList = userService.getUserListByUserName(map);
+			if(access.equals("search"))
+				userListCount = userService.getUserListByUserNameCount(map);
 
 			break;
 		case "companyNumber":
-			map.put("keyValue", request.getParameter("keyValue"));
+			map.put("keyValue", keyValue);
 			userList = userService.getUserListByCompanyNumber(map);
+			if(access.equals("search"))
+				userListCount = userService.getUserListByCompanyNumberCount(map);
 
 			break;		
 
 		default:
 			break;
-		}
-		
-		request.setAttribute("userList", userList);
-		request.setAttribute("userListCount",userService.getUserListCount());
+		}		
+		request.setAttribute("userList", userList);			
+		request.setAttribute("userListCount",userListCount);		
+		request.setAttribute("token", token);
+		request.setAttribute("keyValue", keyValue);
 		
 		return "/Admin/userList";
 	}

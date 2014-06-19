@@ -57,6 +57,14 @@ public interface UserService {
 	
 	public ArrayList<User> getUserListByCompanyNumber(Map<String, String> map) throws Exception;
 	
+	public int getUserListAllCount(Map<String, String> map) throws Exception;
+	
+	public int getUserListByUserIdCount(Map<String, String> map) throws Exception;
+	
+	public int getUserListByUserNameCount(Map<String, String> map) throws Exception;
+	
+	public int getUserListByCompanyNumberCount(Map<String, String> map) throws Exception;
+	
 	public int getUserListCount() throws Exception;
 
 }
