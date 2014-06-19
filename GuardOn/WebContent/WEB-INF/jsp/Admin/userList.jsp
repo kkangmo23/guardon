@@ -31,7 +31,7 @@
 	});
 	
 	function pageMove(){
-		location.href = "./getUserList.do?page="+asyncPaging.options.currentPage+"&userType=admin&userType=user&token=all&keyValue=";
+		location.href = "./getUserList.do?page="+asyncPaging.options.currentPage+"&userType=admin&userType=user&userType=outUser&token=all&keyValue=";
 	}
 </script>
 

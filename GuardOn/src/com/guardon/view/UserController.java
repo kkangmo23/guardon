@@ -127,7 +127,7 @@ public class UserController {
 		String pageParam = request.getParameter("page");
 		if (pageParam == null || pageParam.equals("")) {
 			pageParam = "1";
-		}
+		}		
 		
 		map.put("page", pageParam);		
 		
