@@ -156,5 +156,10 @@ public class UserDAOImpl implements UserDAO {
 	public ArrayList<User> getUserListByCompanyNumber(Map<String, String> map) throws Exception {
 		return (ArrayList<User>) sqlMapClient.queryForList("User.getUserListByCompanyNumber", map);
 	}
+	
+	@Override
+	public int getUserListCount() throws Exception {
+		return (int) sqlMapClient.queryForObject("User.getUserListCount");
+	}
 
 }

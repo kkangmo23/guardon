@@ -20,6 +20,21 @@
 <script type="text/javascript" src="<%=cp%>/js/__jquery.tablesorter/jquery.metadata.js"></script>
 <script type="text/javascript" src="<%=cp%>/js/__jquery.tablesorter/addons/pager/jquery.tablesorter.pager.js"></script>
 
+ <script type="text/javascript">
+
+	$(document).ready(function(){
+
+		asyncPaging.title.previous = "<";
+		asyncPaging.title.next = ">";
+		asyncPaging.onclick = "pageMove()";
+		asyncPaging.init("paging", Number($("#userListCount").val()), 15, Number($("#currentPage").val()));		
+	});
+	
+	function pageMove(){
+		location.href = "./getUserList.do?page="+asyncPaging.options.currentPage+"&userType=admin&userType=user&token=all&keyValue=";
+	}
+</script>
+
 <script type="text/javascript">
 $(function() {		
 	$("#tablesorter-demo").tablesorter({sortList:[[0,0],[2,1]], widgets: ['zebra']});
@@ -111,6 +126,9 @@ $(function() {
            </tr>   
          </c:forEach>
     </table>
+    <div id="paging" style="height:100px;"></div>
+    <input id="currentPage" type="hidden" value="${page}" />
+    <input id="userListCount" type="hidden" value="${userListCount}" />
 		
 			</center>
 	</form>

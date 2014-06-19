@@ -128,6 +128,7 @@ public class UserController {
 		if (pageParam == null || pageParam.equals("")) {
 			pageParam = "1";
 		}
+		
 		map.put("page", pageParam);		
 		
 		String[] temp  = request.getParameterValues("userType");
@@ -140,6 +141,7 @@ public class UserController {
 			else if (temp[i].equals("outUser"))
 				outUser="outUser";
 		}
+		
 		map.put("admin", admin);
 		map.put("user", user);
 		map.put("outUser", outUser);
@@ -171,6 +173,7 @@ public class UserController {
 		}
 		
 		request.setAttribute("userList", userList);
+		request.setAttribute("userListCount",userService.getUserListCount());
 		
 		return "/Admin/userList";
 	}

@@ -163,6 +163,7 @@
 		SELECT userType, userId, userName, companyNumber, userDepartment, userLevel, userEmail, PhoneNumber
 		FROM tbl_user
 		WHERE userType IN (#admin#, #user#, #outUser#)
+		LIMIT $page$, 15
 	</select>
 	
 	<select id="getUserListByUserId" parameterClass="map" resultClass="user" >
@@ -180,7 +181,12 @@
 	<select id="getUserListByCompanyNumber" parameterClass="map" resultClass="user" >
 		SELECT userType, userId, userName, companyNumber, userDepartment, userLevel, userEmail, PhoneNumber
 		FROM tbl_user
-		WHERE userType IN (#admin#, #user#, #outUser#) AND companyNumber=#keyValue#
+		WHERE userType IN (#admin#, #user#, #outUser#) AND companyNumber LIKE CONCAT('%',#keyValue#,'%')
+	</select>
+	
+	<select id="getUserListCount" resultClass="int" >
+		SELECT COUNT(*)
+		FROM tbl_user
 	</select>
 	
 </sqlMap>

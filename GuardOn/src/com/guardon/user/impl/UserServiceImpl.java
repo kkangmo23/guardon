@@ -150,5 +150,10 @@ public class UserServiceImpl implements UserService {
 	public ArrayList<User> getUserListByCompanyNumber(Map<String, String> map) throws Exception {
 		return userDAO.getUserListByCompanyNumber(map);
 	}
+	
+	@Override
+	public int getUserListCount() throws Exception {
+		return userDAO.getUserListCount();
+	}
 
 }

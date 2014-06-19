@@ -56,5 +56,7 @@ public interface UserDAO {
 	public ArrayList<User> getUserListByUserName(Map<String, String> map) throws Exception;
 	
 	public ArrayList<User> getUserListByCompanyNumber(Map<String, String> map) throws Exception;
+	
+	public int getUserListCount() throws Exception;
 
 }
