@@ -130,7 +130,6 @@ public class UserController {
 		String outUser="";
 		String token = request.getParameter("token");
 		String keyValue = request.getParameter("keyValue");		
-		System.out.println(keyValue);
 		String access = request.getParameter("access");
 		int userListCount = Integer.parseInt(request.getParameter("userListCount"));		
 		

@@ -162,53 +162,53 @@
 	<select id="getUserListAll" parameterClass="map" resultClass="user" >
 		SELECT userType, userId, userName, companyNumber, userDepartment, userLevel, userEmail, PhoneNumber
 		FROM tbl_user
-		WHERE userType IN (#admin#, #user#, #outUser#)
+		WHERE userType IN (#admin#, #user#, #outUser#) AND joinApproved='approved'
 		LIMIT $page$, 15
 	</select>
 	
 	<select id="getUserListByUserId" parameterClass="map" resultClass="user" >
 		SELECT userType, userId, userName, companyNumber, userDepartment, userLevel, userEmail, PhoneNumber
 		FROM tbl_user
-		WHERE userType IN (#admin#, #user#, #outUser#) AND userId=#keyValue#
+		WHERE userType IN (#admin#, #user#, #outUser#) AND userId=#keyValue# AND joinApproved='approved'
 		LIMIT $page$, 15
 	</select>
 	
 	<select id="getUserListByUserName" parameterClass="map" resultClass="user" >
 		SELECT userType, userId, userName, companyNumber, userDepartment, userLevel, userEmail, PhoneNumber
 		FROM tbl_user
-		WHERE userType IN (#admin#, #user#, #outUser#) AND userName=#keyValue#
+		WHERE userType IN (#admin#, #user#, #outUser#) AND userName=#keyValue# AND joinApproved='approved'
 		LIMIT $page$, 15
 	</select>
 	
 	<select id="getUserListByCompanyNumber" parameterClass="map" resultClass="user" >
 		SELECT userType, userId, userName, companyNumber, userDepartment, userLevel, userEmail, PhoneNumber
 		FROM tbl_user
-		WHERE userType IN (#admin#, #user#, #outUser#) AND companyNumber LIKE CONCAT('%',#keyValue#,'%')
+		WHERE userType IN (#admin#, #user#, #outUser#) AND companyNumber LIKE CONCAT('%',#keyValue#,'%') AND joinApproved='approved'
 		LIMIT $page$, 15
 	</select>
 	
 	<select id="getUserListAllCount" parameterClass="map" resultClass="int" >
 		SELECT COUNT(*)
 		FROM tbl_user
-		WHERE userType IN (#admin#, #user#, #outUser#)		
+		WHERE userType IN (#admin#, #user#, #outUser#) AND joinApproved='approved'		
 	</select>
 	
 	<select id="getUserListByUserIdCount" parameterClass="map" resultClass="int" >
 		SELECT COUNT(*)
 		FROM tbl_user
-		WHERE userType IN (#admin#, #user#, #outUser#) AND userId=#keyValue#		
+		WHERE userType IN (#admin#, #user#, #outUser#) AND userId=#keyValue# AND joinApproved='approved'		
 	</select>
 	
 	<select id="getUserListByUserNameCount" parameterClass="map" resultClass="int" >
 		SELECT COUNT(*)
 		FROM tbl_user
-		WHERE userType IN (#admin#, #user#, #outUser#) AND userName=#keyValue#		
+		WHERE userType IN (#admin#, #user#, #outUser#) AND userName=#keyValue# AND joinApproved='approved'		
 	</select>
 	
 	<select id="getUserListByCompanyNumberCount" parameterClass="map" resultClass="int" >
 		SELECT COUNT(*)
 		FROM tbl_user
-		WHERE userType IN (#admin#, #user#, #outUser#) AND companyNumber LIKE CONCAT('%',#keyValue#,'%')		
+		WHERE userType IN (#admin#, #user#, #outUser#) AND companyNumber LIKE CONCAT('%',#keyValue#,'%') AND joinApproved='approved'		
 	</select>
 	
 	<select id="getUserListCount" resultClass="int" >
