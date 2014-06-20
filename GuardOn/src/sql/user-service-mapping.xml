@@ -54,7 +54,7 @@
 	<insert id="insertUser" parameterClass="user">
 		INSERT INTO 
 		tbl_user(userName, userId, userPwd, userDepartment, userLevel, companyNumber, userEmail, phoneNumber, joinDate, totalRequestCount, totalApprovalCount, totalRejectCount, userType, joinApproved)
-		VALUES(#userName#, #userId#, #userPwd#, #userDepartment#, #userLevel#, #companyNumber#, #userEmail#, #phoneNumber#, #joinDate#, 0, 0, 0, #userType#, 'unchecked');
+		VALUES(#userName#, #userId#, #userPwd#, #userDepartment#, #userLevel#, #companyNumber#, #userEmail#, #phoneNumber#, #joinDate#, 0, 0, 0, #userType#, 'approved');
 	</insert>
 	
 	<update id="updateUser" parameterClass="user">
