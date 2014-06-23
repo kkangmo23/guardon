@@ -25,6 +25,11 @@ public class ReportController {
 	@Named("reportService")
 	ReportService reportService;
 	
+	@RequestMapping("graphTest.do")
+	public String graphTest(HttpServletRequest request) throws Exception {
+		return "/Admin/graphTest";
+	}
+	
 	@RequestMapping("approvalReportPretreatment.do")
 	public String approvalReportPretreatment(HttpServletRequest request) throws Exception {
 		return "/Admin/approvalReportPretreatment";
