@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.guardon.report.ReportService;
 import com.guardon.report.domain.ApprovalInfo;
+import com.guardon.report.domain.GraphInfo;
 import com.guardon.report.domain.LogInfo;
 
 @Controller
@@ -27,9 +28,28 @@ public class ReportController {
 	
 	@RequestMapping("graphTest.do")
 	public String graphTest(HttpServletRequest request) throws Exception {
-		String str[] = {"aaa","bbb"};
+	
+		ArrayList<GraphInfo> line1 = new ArrayList<GraphInfo>();
+		GraphInfo g1 = new GraphInfo();
+		//GraphInfo g2 = new GraphInfo();
 		
-		request.setAttribute("line1", str);
+		g1.setDate("2014-05-21");
+		g1.setCount(14);
+		//line1.add(g1);
+		line1.add(0, g1);
+		
+		g1.setDate("2014-05-22");
+		g1.setCount(54);
+		//line1.add(g1);
+		line1.add(1, g1);
+		
+		System.out.println(line1.size());
+		for (int i = 0; i < line1.size(); i++) {
+			System.out.println(line1.get(i).getDate());
+		}
+		//System.out.println(line1.get(0).getDate());
+		
+		request.setAttribute("line1", line1);
 		
 		return "/Admin/graphTest";
 	}

@@ -15,7 +15,7 @@ public class TelnetSample {
 	public void connect(String server, String user, String password) throws Exception{
 
 			telnet.connect(server, 23);
-			telnet.setSoTimeout(10000);
+			telnet.setSoTimeout(100);			
 
 			in = telnet.getInputStream();
 			out = new PrintStream(telnet.getOutputStream());

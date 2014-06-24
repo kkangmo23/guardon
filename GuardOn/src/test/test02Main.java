@@ -7,7 +7,7 @@ public class test02Main {
 		String serverIp, userId, currentPwd, newPwd, serverId, serverPwd;
 
 		//serverIp = "211.178.181.67";
-		serverIp = "111.111.111.111";
+		serverIp = "211.200.178.182";
 		serverId = "administraor";
 		serverPwd = "4321";
 		userId = "test";
@@ -22,8 +22,8 @@ public class test02Main {
 		// When server is based on windows
 		telnet.setHostPrompt(">");
 		
-		try{
-		telnet.connect(serverIp, serverId, serverPwd);
+		try{			
+			telnet.connect(serverIp, serverId, serverPwd);			
 		}
 		catch(Exception e)
 		{
