@@ -27,6 +27,10 @@ public class ReportController {
 	
 	@RequestMapping("graphTest.do")
 	public String graphTest(HttpServletRequest request) throws Exception {
+		String str[] = {"aaa","bbb"};
+		
+		request.setAttribute("line1", str);
+		
 		return "/Admin/graphTest";
 	}
 	

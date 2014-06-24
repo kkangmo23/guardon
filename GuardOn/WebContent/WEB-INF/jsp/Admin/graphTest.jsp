@@ -20,9 +20,12 @@
 
 <script type="text/javascript">
 $(document).ready(function(){
-  var line1=[['23-May-08', 578.55], ['20-Jun-08', 566.5], ['25-Jul-08', 480.88], ['22-Aug-08', 509.84],
+  /*var line1=[['23-May-08', 578.55], ['20-Jun-08', 566.5], ['25-Jul-08', 480.88], ['22-Aug-08', 509.84],
       ['26-Sep-08', 454.13], ['24-Oct-08', 379.75], ['21-Nov-08', 303], ['26-Dec-08', 308.56],
       ['23-Jan-09', 299.14], ['20-Feb-09', 346.51], ['20-Mar-09', 325.99], ['24-Apr-09', 386.15]];
+  */
+  var line1 = document.form1.line1.value;
+  alert(line1);
   var line2=[['23-May-08', 463.55], ['20-Jun-08', 566.5], ['25-Jul-08', 180.88], ['22-Aug-08', 519.84],
              ['26-Sep-08', 657.13], ['24-Oct-08', 534.75], ['21-Nov-08', 113], ['26-Dec-08', 365.56],
              ['23-Jan-09', 266.14], ['20-Feb-09', 534.51], ['20-Mar-09', 367.99], ['24-Apr-09', 286.15]];
@@ -105,6 +108,8 @@ $(document).ready(function(){
 <div id=chart1 style="width: 600px"></div>
 <br/><br/><br/>
 <div id=chart3 style="width: 600px"></div>
-
+<form name="form1">
+<input name="line1" type="hidden" value="${line1}" />
+</form>
 </body>
 </html>
