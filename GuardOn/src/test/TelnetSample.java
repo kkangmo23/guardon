@@ -14,8 +14,11 @@ public class TelnetSample {
 
 	public void connect(String server, String user, String password) throws Exception{
 
-			telnet.connect(server, 23);
-			telnet.setSoTimeout(100);			
+		try{
+			telnet.setDefaultTimeout(10000);
+			telnet.connect(server, 23);	
+			telnet.setSoTimeout(10000);
+			telnet.setSoLinger(true, 10000);
 
 			in = telnet.getInputStream();
 			out = new PrintStream(telnet.getOutputStream());
@@ -26,7 +29,10 @@ public class TelnetSample {
 			readUntil("assword:");
 			write(password);
 
-			readUntil(hostPrompt);		
+			readUntil(hostPrompt);
+		} catch (Exception e) {
+			throw e;
+		}
 	}
 
 	public void readUntil(String pattern) {

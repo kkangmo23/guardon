@@ -75,17 +75,20 @@
   Guard-ON</strong> 변경사항</div>
 
 <div class="sidebar1">
-    <ul class="nav">
-      <li><a href="index.do">Home</a></li>
-    <li><a href="joinUserList.do">회원가입 요청 리스트</a></li>
-      <li><a href="approvalUserList.do">비밀번호 발급 요청 리스트</a></li>
-      <li><a href="changeAllList.do">사용자 일괄-선택 비밀번호 발급</a></li>
-      <li><a href="updateUser.do">개인정보 수정</a></li>
-      <li><a href="option.do">관리자 설정</a></li>
-      <li><a href="workflow.do">워크플로우 생성</a></li>
-      <li><a href="userLogout.do">로그아웃</a></li>
-    </ul>
-    <p>&nbsp;</p>
+			<ul class="nav">
+				<li><a href="index.do">Home</a></li>				
+				<li><a href="approvalUserList.do">비밀번호 발급 요청 리스트</a></li>
+				<li><a href="changeAllList.do">사용자 일괄-선택 비밀번호 발급</a></li>
+				<li><a href="updateUser.do">개인정보 수정</a></li>
+				<li><a href="option.do">관리자 설정</a></li>
+				<li><a href="workflow.do">워크플로우 생성</a></li>
+				<li><a href="approvalReportPretreatment.do">승인/반려 보고서</a></li>
+				<li><a href="logReportPretreatment.do">로그 보고서</a></li>
+				<li><a href="userList.do">회원정보 조회</a></li>
+				<li><a href="joinUserList.do">회원가입 요청 리스트</a></li>
+				<li><a href="userLogout.do">로그아웃</a></li>
+			</ul>
+			<p>&nbsp;</p>
 <!-- end .sidebar1 --></div>
 
   <div>

@@ -113,7 +113,16 @@ public class UserController {
 	}
 
 	@RequestMapping("userList.do")
-	public String userList(HttpServletRequest request) throws Exception {
+	public String userList(HttpServletRequest request, HttpSession session) throws Exception {
+		if (session.getAttribute("userId") == null) {
+			request.setAttribute("errorMessage", "세션이 만료되었습니다.");
+			return "/Common/errorPage";
+		}
+		String userId = (String) session.getAttribute("userId");
+		if (!(userService.getUserType(userId).equals("super") || userService.getUserType(userId).equals("admin"))) {
+			request.setAttribute("errorMessage", "관리자만 접근할 수 있습니다.");
+			return "/Common/errorPage";
+		}
 		
 		request.setAttribute("token", "all");
 		request.setAttribute("userListCount", "0");
@@ -122,7 +131,16 @@ public class UserController {
 	}
 	
 	@RequestMapping("getUserList.do")
-	public String getUserList(HttpServletRequest request) throws Exception {		
+	public String getUserList(HttpServletRequest request, HttpSession session) throws Exception {		
+		if (session.getAttribute("userId") == null) {
+			request.setAttribute("errorMessage", "세션이 만료되었습니다.");
+			return "/Common/errorPage";
+		}
+		String userId = (String) session.getAttribute("userId");
+		if (!(userService.getUserType(userId).equals("super") || userService.getUserType(userId).equals("admin"))) {
+			request.setAttribute("errorMessage", "관리자만 접근할 수 있습니다.");
+			return "/Common/errorPage";
+		}
 		ArrayList<User> userList = new ArrayList<User>();
 		Map<String, String> map = new HashMap<>();
 		String admin="";
@@ -395,6 +413,11 @@ public class UserController {
 			request.setAttribute("errorMessage", "세션이 만료되었습니다.");
 			return "/Common/errorPage";
 		}
+		String sessionUserId = (String) session.getAttribute("userId");
+		if (!(userService.getUserType(sessionUserId).equals("super"))) {
+			request.setAttribute("errorMessage", "최고 관리자만 접근할 수 있습니다.");
+			return "/Common/errorPage";
+		}
 
 		String[] userId;
 
@@ -415,6 +438,11 @@ public class UserController {
 			throws Exception {
 		if (session.getAttribute("userId") == null) {
 			request.setAttribute("errorMessage", "세션이 만료되었습니다.");
+			return "/Common/errorPage";
+		}
+		String sessionUserId = (String) session.getAttribute("userId");
+		if (!(userService.getUserType(sessionUserId).equals("super"))) {
+			request.setAttribute("errorMessage", "최고 관리자만 접근할 수 있습니다.");
 			return "/Common/errorPage";
 		}
 		String[] userId;

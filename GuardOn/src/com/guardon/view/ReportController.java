@@ -17,6 +17,7 @@ import com.guardon.report.ReportService;
 import com.guardon.report.domain.ApprovalInfo;
 import com.guardon.report.domain.GraphInfo;
 import com.guardon.report.domain.LogInfo;
+import com.guardon.user.UserService;
 
 @Controller
 @RequestMapping("/*")
@@ -25,6 +26,10 @@ public class ReportController {
 	@Inject
 	@Named("reportService")
 	ReportService reportService;
+	
+	@Inject
+	@Named("userService")
+	UserService userService;
 	
 	@RequestMapping("graphTest.do")
 	public String graphTest(HttpServletRequest request) throws Exception {
@@ -55,15 +60,42 @@ public class ReportController {
 	}
 	
 	@RequestMapping("approvalReportPretreatment.do")
-	public String approvalReportPretreatment(HttpServletRequest request) throws Exception {
+	public String approvalReportPretreatment(HttpServletRequest request, HttpSession session) throws Exception {
+		if (session.getAttribute("userId") == null) {
+			request.setAttribute("errorMessage", "세션이 만료되었습니다.");
+			return "/Common/errorPage";
+		}
+		String userId = (String) session.getAttribute("userId");
+		if (!(userService.getUserType(userId).equals("super") || userService.getUserType(userId).equals("admin"))) {
+			request.setAttribute("errorMessage", "관리자만 접근할 수 있습니다.");
+			return "/Common/errorPage";
+		}
 		return "/Admin/approvalReportPretreatment";
 	}
 	@RequestMapping("saveApprovalReport.do")
-	public String saveApprovalReport(HttpServletRequest request) throws Exception {		
+	public String saveApprovalReport(HttpServletRequest request, HttpSession session) throws Exception {	
+		if (session.getAttribute("userId") == null) {
+			request.setAttribute("errorMessage", "세션이 만료되었습니다.");
+			return "/Common/errorPage";
+		}
+		String userId = (String) session.getAttribute("userId");
+		if (!(userService.getUserType(userId).equals("super") || userService.getUserType(userId).equals("admin"))) {
+			request.setAttribute("errorMessage", "관리자만 접근할 수 있습니다.");
+			return "/Common/errorPage";
+		}
 		return "/Admin/saveApprovalReport";
 	}	
 	@RequestMapping("approvalReport.do")
 	public String approvalReport(HttpServletRequest request, HttpSession session) throws Exception {
+		if (session.getAttribute("userId") == null) {
+			request.setAttribute("errorMessage", "세션이 만료되었습니다.");
+			return "/Common/errorPage";
+		}
+		String userId = (String) session.getAttribute("userId");
+		if (!(userService.getUserType(userId).equals("super") || userService.getUserType(userId).equals("admin"))) {
+			request.setAttribute("errorMessage", "관리자만 접근할 수 있습니다.");
+			return "/Common/errorPage";
+		}
 		
 		ArrayList<ApprovalInfo> approvalList = new ArrayList<ApprovalInfo>();
 		Map<String, String> map = new HashMap<>();
@@ -107,15 +139,42 @@ public class ReportController {
 	}
 	
 	@RequestMapping("logReportPretreatment.do")
-	public String logReportPretreatment(HttpServletRequest request) throws Exception {
+	public String logReportPretreatment(HttpServletRequest request, HttpSession session) throws Exception {
+		if (session.getAttribute("userId") == null) {
+			request.setAttribute("errorMessage", "세션이 만료되었습니다.");
+			return "/Common/errorPage";
+		}
+		String userId = (String) session.getAttribute("userId");
+		if (!(userService.getUserType(userId).equals("super") || userService.getUserType(userId).equals("admin"))) {
+			request.setAttribute("errorMessage", "관리자만 접근할 수 있습니다.");
+			return "/Common/errorPage";
+		}
 		return "/Admin/logReportPretreatment";
 	}
 	@RequestMapping("saveLogReport.do")
-	public String saveLogReport(HttpServletRequest request) throws Exception {		
+	public String saveLogReport(HttpServletRequest request, HttpSession session) throws Exception {	
+		if (session.getAttribute("userId") == null) {
+			request.setAttribute("errorMessage", "세션이 만료되었습니다.");
+			return "/Common/errorPage";
+		}
+		String userId = (String) session.getAttribute("userId");
+		if (!(userService.getUserType(userId).equals("super") || userService.getUserType(userId).equals("admin"))) {
+			request.setAttribute("errorMessage", "관리자만 접근할 수 있습니다.");
+			return "/Common/errorPage";
+		}
 		return "/Admin/saveLogReport";
 	}	
 	@RequestMapping("logReport.do")
 	public String logReport(HttpServletRequest request, HttpSession session) throws Exception {
+		if (session.getAttribute("userId") == null) {
+			request.setAttribute("errorMessage", "세션이 만료되었습니다.");
+			return "/Common/errorPage";
+		}
+		String userId = (String) session.getAttribute("userId");
+		if (!(userService.getUserType(userId).equals("super") || userService.getUserType(userId).equals("admin"))) {
+			request.setAttribute("errorMessage", "관리자만 접근할 수 있습니다.");
+			return "/Common/errorPage";
+		}
 		
 		ArrayList<LogInfo> logList = new ArrayList<LogInfo>();
 		Map<String, String> map = new HashMap<>();

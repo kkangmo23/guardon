@@ -6,8 +6,8 @@ public class test02Main {
 
 		String serverIp, userId, currentPwd, newPwd, serverId, serverPwd;
 
-		//serverIp = "211.178.181.67";
 		serverIp = "211.200.178.182";
+		//serverIp = "211.200.178.157";
 		serverId = "administraor";
 		serverPwd = "4321";
 		userId = "test";
@@ -20,7 +20,7 @@ public class test02Main {
 		// telnet.setHostPrompt("$");
 
 		// When server is based on windows
-		telnet.setHostPrompt(">");
+		telnet.setHostPrompt(">");		
 		
 		try{			
 			telnet.connect(serverIp, serverId, serverPwd);			
@@ -32,6 +32,7 @@ public class test02Main {
 		
 		telnet.changePwd(userId, currentPwd, newPwd);
 		telnet.disconnect();
+		System.out.println("Finished!");
 
 	}
 
