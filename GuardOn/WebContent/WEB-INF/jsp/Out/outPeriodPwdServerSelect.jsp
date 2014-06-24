@@ -21,6 +21,39 @@
 <script type="text/javascript" src="<%=cp%>/js/__jquery.tablesorter/addons/pager/jquery.tablesorter.pager.js"></script>
 
 <script type="text/javascript">
+function emptyCheck(){
+	var form = document.forms['check'];
+	var connectId = document.check.connectId.value;
+	var requestDesc = document.check.requestDesc.value;
+	var serverName = document.getElementsByName("checkList");
+	var startDate = document.check.startDate.value;
+	var endDate = document.check.endDate.value;
+	var check = false;
+	
+	for (var i = 0; i < serverName.length; i++) {
+		if (serverName[i].checked==true) {
+			check = true;
+			break;
+		}
+	}
+	
+	if(requestDesc==""||connectId==""||!check){
+		alert("접속할 아이디, 요청 사유, 서버를 체크 하세요");
+	}else if (startDate == "" || endDate == "") {
+		alert("조회 기간을 선택해 주십시오");
+	}else{
+		if (connectId=="administrator" || connectId=="Administrator"){
+			alert("해당 아이디는 사용할 수 없습니다.");
+		}
+		else{
+		form.action='outPeriodPwdApproval.do';
+		form.submit();
+		}
+	}
+}
+</script>
+
+<script type="text/javascript">
  function fc_chk_byte(aro_name,ari_max)
  {
 
@@ -173,7 +206,7 @@ $(function() {
   <!-- end .sidebar1 --></div>
   <div class="content">
  
-  <form action="outPeriodPwdApproval.do" method="post" autocomplete="off">
+  <form action="outPeriodPwdApproval.do" method="post" name="check" autocomplete="off">
    <center>
   <table id="tablesorter-demo" class="tablesorter" border="0" cellpadding="0" cellspacing="1">
  <thead>
@@ -223,7 +256,7 @@ $(function() {
      <p> </p>
      <br/>
      <br/>
-      <input type="submit"  value="주기적 비밀번호 얻기"/>
+      <input type="button" value="주기적 비밀번호 얻기" onclick="emptyCheck()"/>
 		</center>
           </form>
 
