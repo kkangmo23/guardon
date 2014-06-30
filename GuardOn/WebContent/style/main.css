@@ -74,10 +74,9 @@ h3 {
 #top {
 	height: 68px;
 }
+
 #logInfo {
-	float: right;
-	display: inline;
-	padding: 20px 0 0;
+	height: 30px;	
 }
 
 /* menu */
@@ -111,7 +110,8 @@ h3 {
 
 /* logo */
 #logo {
-	padding: 20px 0 0;
+	float: left;
+	padding: 20px 100px 0 20px;
 }
 
 /* pitch */

@@ -21,12 +21,19 @@
 				<li><a href="#">회원 관리</a></li>
 				<li><a href="#">보고서</a></li>
 				<li><a href="#">워크플로우</a></li>
-				<li><a href="#">설정</a></li>
-			</ul>
-			<span id="logInfo">Admin<br/>(관리자)</span>
-			
+				<li><a href="#">설정</a></li>								
+			</ul>						
 		</div>
 		<!-- /top -->
+		
+		<div id="logInfo">
+		<span style="float: right">
+		Admin(관리자)
+		<input type="button" value="개인정보수정">
+		<input type="button" value="로그아웃">
+		</span>		
+		</div>
+		
 		<br/>
 		<div>
 		Contents!!!!!!!!!!
