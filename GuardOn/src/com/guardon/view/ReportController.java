@@ -31,6 +31,11 @@ public class ReportController {
 	@Named("userService")
 	UserService userService;
 	
+	@RequestMapping("UXTest.do")
+	public String UXTest(HttpServletRequest request) throws Exception {
+		return "/test/UXTest2";
+	}
+	
 	@RequestMapping("graphTest.do")
 	public String graphTest(HttpServletRequest request) throws Exception {
 	
