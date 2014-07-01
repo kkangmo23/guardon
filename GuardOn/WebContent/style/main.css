@@ -52,16 +52,9 @@ h1 a
 
 h2 {
 	clear: both;
+	color: black;
+	font-size: 2.5em;
 	float: left;
-	font-size: 2.94em;
-	color: #fff;
-	line-height: 1.6em;
-	position: absolute;
-	top: 75px;
-	filter:alpha(opacity=0);
-	-moz-opacity:0;
-	-khtml-opacity: 0;
-	opacity: 0;
 }
 
 h3 {
@@ -76,7 +69,12 @@ h3 {
 }
 
 #logInfo {
-	height: 30px;	
+	height: 30px;		
+}
+
+#login {
+	height: 300px;
+	width: 500px;
 }
 
 /* menu */

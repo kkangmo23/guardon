@@ -16,29 +16,24 @@
 		<!-- top -->
 		<div id="top">
 			<h1 id="logo"><a href="UXTest.do">Guard<span>On</span></a></h1>
-			<ul id="menu">
-				<li><a class="current" href="#">비밀번호 관리</a></li>
-				<li><a href="#">회원 관리</a></li>
-				<li><a href="#">보고서</a></li>
-				<li><a href="#">워크플로우</a></li>
-				<li><a href="#">설정</a></li>								
-			</ul>						
+					
 		</div>
 		<!-- /top -->
+			
+		<br/><br/><br/>
 		
-		<div id="logInfo">
-		<span style="float: right;padding-top: 10px;">
-		<font style="font-weight: bold;">${sessionScope.userId }</font>(관리자)&nbsp;
-		<a href="updateUser.do"><input type="button" value="개인정보수정"></a>
-		<a href="userLogout.do"><input type="button" value="로그아웃"></a>
-		</span>		
-		</div>
 		
-		<br/>
-		<div>
-		Contents!!!!!!!!!!
-		<br/><br/><br/><br/>
-		</div>
+		<form action="userLogin.do" method="post" autocomplete="off">
+			<div id="login">
+				<h2>Log In</h2><br/>
+				아 이 디<input type="text" name="userId"><br/>
+				비밀번호<input type="password" name="userPwd"><br/>
+				<input type="submit" value="로 그 인"/> 
+				<a href="userJoin.do"><input type="button" value="회원가입"/></a><br/>
+				<a href="findId.do">아이디 찾기 </a>/<a href="findPwd.do"> 비밀번호 찾기</a>
+			</div>
+		</form>
+		
 		
 		<!-- footer -->
 		<div id="footer">
