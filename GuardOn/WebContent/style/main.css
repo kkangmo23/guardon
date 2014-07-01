@@ -52,7 +52,7 @@ h1 a
 
 h2 {
 	clear: both;
-	color: black;
+	color: #424242;
 	font-size: 2.5em;
 	float: left;
 }
@@ -73,16 +73,27 @@ h3 {
 }
 
 #login {
-	height: 300px;
+	height: 250px;
 	width: 500px;
+	padding: 50px;
+	margin-left: 200px;
+}
+
+#login table {
+	padding: 30px;
+}
+
+#login tr, td {
+	padding: 5px;
 }
 
 /* menu */
 #menu {
 	float: right;
-	padding: 20px 0 0;
+	padding: 20px 0 0;	
 }
 #menu li {
+	float: left;
 	display: inline;
 	list-style: none;
 	font-size: 1.1em;
@@ -95,9 +106,34 @@ h3 {
 }
 #menu li a:hover, #menu li a.current {
 	background: url(../style/images/tab.png) repeat-x left bottom;
-}
-#menu li a.current {
 	color: #fff;
+}
+#menu div {
+	position: absolute;
+	visibility: hidden;
+	margin: 40px 0 0 20px;
+	padding: 0;
+	background: #E6E6E6;
+	border: 1px solid
+}
+
+#menu div a {
+	position: relative;
+	display: block;
+	margin: 0;
+	padding: 5px 10px;
+	width: auto;
+	white-space: nowrap;
+	text-align: left;
+	text-decoration: none;
+	background: #E6E6E6;
+	color: #424242;
+	font: 11px arial
+}
+
+#menu div a:hover {
+	background: #1C1C1C;
+	color: #FFF
 }
 
 /* content */

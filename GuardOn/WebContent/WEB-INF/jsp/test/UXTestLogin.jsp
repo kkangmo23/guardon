@@ -20,17 +20,26 @@
 		</div>
 		<!-- /top -->
 			
-		<br/><br/><br/>
+		<br/><br/><br/><br/>
 		
 		
 		<form action="userLogin.do" method="post" autocomplete="off">
 			<div id="login">
 				<h2>Log In</h2><br/>
-				아 이 디<input type="text" name="userId"><br/>
-				비밀번호<input type="password" name="userPwd"><br/>
-				<input type="submit" value="로 그 인"/> 
-				<a href="userJoin.do"><input type="button" value="회원가입"/></a><br/>
-				<a href="findId.do">아이디 찾기 </a>/<a href="findPwd.do"> 비밀번호 찾기</a>
+				<table>
+				<tr>
+				<td>아 이 디</td>
+				<td><input type="text" name="userId"></td>
+				<td rowspan="2"><input type="submit" value="로 그 인"/> <br/></td>				
+				</tr>
+				<tr>				
+				<td>비밀번호</td>
+				<td><input type="password" name="userPwd"></td>
+				</tr>
+				<tr>
+				<td colspan="3" style="text-align: center;"><a href="findId.do">아이디 찾기 </a>/<a href="findPwd.do"> 비밀번호 찾기 </a>/<a href="userJoin.do"> 회원가입</a></td>
+				</tr>
+				</table>				
 			</div>
 		</form>
 		

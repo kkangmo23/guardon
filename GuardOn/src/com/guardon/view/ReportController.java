@@ -33,13 +33,26 @@ public class ReportController {
 	
 	@RequestMapping("UXTest.do")
 	public String UXTest(HttpServletRequest request) throws Exception {
-		return "/test/UXTest2";
+		return "/test/UXTestAdminHome";
 	}
 	
 	@RequestMapping("UXTestLogin.do")
 	public String UXTestLogin(HttpServletRequest request) throws Exception {
 		return "/test/UXTestLogin";
 	}	
+	
+	@RequestMapping("UXTestJoinUser.do")
+	public String UXTestJoinUser(HttpServletRequest request) throws Exception {
+		return "/test/UXTestJoinUser";
+	}
+	@RequestMapping("UXTestWorkflow.do")
+	public String UXTestWorkflow(HttpServletRequest request) throws Exception {
+		return "/test/UXTestWorkflow";
+	}	
+	@RequestMapping("UXTestUserOtp.do")
+	public String UXTestUserOtp(HttpServletRequest request) throws Exception {
+		return "/test/UXTestUserOtp";
+	}
 	
 	@RequestMapping("graphTest.do")
 	public String graphTest(HttpServletRequest request) throws Exception {
